@@ -1,0 +1,68 @@
+name: Release tarball
+
+# Trigger: publish a GitHub Release (create tag + release in the UI),
+# or run manually to cut a tarball from any ref.
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Tag name to embed in the archive filename (e.g. v1.0.0)
+        required: false
+        default: manual
+
+jobs:
+  build-tarball:
+    name: Build & attach tarball
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+
+      # Determine the version string: from the release tag, or the manual input.
+      - name: Resolve version
+        id: version
+        run: |
+          if [ "${{ github.event_name }}" = "release" ]; then
+            echo "tag=${{ github.event.release.tag_name }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "tag=${{ inputs.tag }}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create tarball
+        run: |
+          TAG="${{ steps.version.outputs.tag }}"
+          ARCHIVE="glotaran-org-${TAG}.tar.gz"
+          # dist/ contains everything needed; strip the leading "dist/" prefix
+          # so the server can extract directly into the document root.
+          tar -czf "$ARCHIVE" -C dist .
+          echo "ARCHIVE=${ARCHIVE}" >> "$GITHUB_ENV"
+
+      # Attach the tarball to the GitHub Release as a downloadable asset.
+      # On workflow_dispatch (no release object) this step uploads to the
+      # workflow run artifacts instead.
+      - name: Upload to GitHub Release
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ env.ARCHIVE }}
+
+      - name: Upload as workflow artifact (manual run)
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.ARCHIVE }}
+          path: ${{ env.ARCHIVE }}
+          retention-days: 14
