@@ -1,0 +1,111 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const packages = (await getCollection('packages'))
+  .sort((a, b) => a.data.order - b.data.order);
+
+const langLabel: Record<string, string> = { python: 'Python', r: 'R', java: 'Java' };
+---
+
+<Base title="Ecosystem — GloTarAn" description="All packages in the GloTarAn ecosystem for global and target analysis.">
+  <div class="spectrum-bar"></div>
+
+  <nav>
+    <a href="/" class="nav-logo">
+      <span class="nav-logo-glo">Glo</span><span class="nav-logo-tar">Tar</span><span class="nav-logo-an">An</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/ecosystem" class="active">Ecosystem</a></li>
+      <li><a href="/packages/pyglotaran">pyglotaran</a></li>
+      <li><a href="/packages/timp">TIMP</a></li>
+      <li><a href="/publications">Publications</a></li>
+      <li><a href="/#community">Community</a></li>
+    </ul>
+    <a href="https://pyglotaran.readthedocs.io" class="nav-cta" target="_blank" rel="noopener">Documentation ↗</a>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <div class="section-label">Packages</div>
+      <h1>The <em>ecosystem</em></h1>
+      <p class="page-intro">
+        GloTarAn is a family of tools spanning Python, R, and Java.
+        New users should start with <a href="/packages/pyglotaran">pyglotaran</a>.
+      </p>
+    </div>
+
+    <div class="pkg-list">
+      {packages.map((pkg) => (
+        <a href={`/packages/${pkg.slug}`} class={`pkg-row ${pkg.data.lang} ${pkg.data.status === 'archived' ? 'archived' : ''}`}>
+          <div class="pkg-row-left">
+            <span class="pkg-row-name">{pkg.data.name}</span>
+            <span class={`lang-badge ${pkg.data.lang}`}>{langLabel[pkg.data.lang]}</span>
+            {pkg.data.status === 'archived' && <span class="archived-badge">Archived</span>}
+          </div>
+          <p class="pkg-row-summary">{pkg.data.summary}</p>
+          <div class="pkg-row-badges">
+            {pkg.data.badges.map((b) => <span class="badge">{b}</span>)}
+          </div>
+          <span class="pkg-row-arrow">↗</span>
+        </a>
+      ))}
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-copy">© Joris Snellenburg &amp; contributors · VU Amsterdam</div>
+  </footer>
+</Base>
+
+<style>
+  .spectrum-bar { height: 3px; background: linear-gradient(90deg, #9c27b0,#3f51b5,#03a9f4,#00bcd4,#4caf50,#cddc39,#ffc107,#ff5722,#f44336); }
+
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 2.5rem; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: rgba(12,14,18,0.92); backdrop-filter: blur(12px); z-index: 100; }
+  .nav-logo { display: flex; align-items: baseline; gap: 0.1em; text-decoration: none; }
+  .nav-logo-glo { font-family: var(--font-display); font-weight: 600; font-size: 1.4rem; color: var(--text); letter-spacing: -0.02em; }
+  .nav-logo-tar { font-family: var(--font-display); font-weight: 300; font-style: italic; font-size: 1.4rem; color: var(--text-muted); }
+  .nav-logo-an  { font-family: var(--font-display); font-weight: 600; font-size: 1.4rem; color: var(--text); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.875rem; transition: color 0.15s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--text); }
+  .nav-cta { background: transparent; border: 1px solid var(--border-hover); color: var(--text); padding: 0.45rem 1.1rem; border-radius: 6px; font-size: 0.875rem; text-decoration: none; }
+
+  main { max-width: 900px; margin: 0 auto; padding: 4rem 2.5rem 5rem; }
+
+  .section-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem; }
+  h1 { font-family: var(--font-display); font-size: 2.5rem; font-weight: 300; letter-spacing: -0.02em; color: var(--text); margin-bottom: 1rem; }
+  h1 em { font-style: italic; color: var(--text-muted); }
+  .page-intro { font-size: 1rem; color: var(--text-muted); margin-bottom: 3rem; }
+  .page-intro a { color: var(--accent-py); text-decoration: none; }
+  .page-intro a:hover { text-decoration: underline; }
+
+  .pkg-list { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+
+  .pkg-row { display: grid; grid-template-columns: 220px 1fr auto auto; gap: 1rem; align-items: center; padding: 1.25rem 1.5rem; text-decoration: none; border-bottom: 1px solid var(--border); transition: background 0.15s; position: relative; }
+  .pkg-row:last-child { border-bottom: none; }
+  .pkg-row::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; opacity: 0; transition: opacity 0.2s; }
+  .pkg-row:hover { background: var(--bg-surface); }
+  .pkg-row:hover::before { opacity: 1; }
+  .pkg-row.python::before { background: var(--accent-py); }
+  .pkg-row.r::before      { background: var(--accent-r); }
+  .pkg-row.java::before   { background: var(--accent-java); }
+  .pkg-row.archived { opacity: 0.65; }
+
+  .pkg-row-left { display: flex; flex-direction: column; gap: 0.35rem; }
+  .pkg-row-name { font-family: var(--font-mono); font-size: 0.9rem; font-weight: 500; color: var(--text); }
+  .lang-badge { font-family: var(--font-mono); font-size: 0.68rem; font-weight: 500; padding: 0.15rem 0.5rem; border-radius: 4px; width: fit-content; }
+  .lang-badge.python { background: rgba(79,195,247,0.12); color: var(--accent-py); }
+  .lang-badge.r      { background: rgba(239,154,154,0.12); color: var(--accent-r); }
+  .lang-badge.java   { background: rgba(165,214,167,0.12); color: var(--accent-java); }
+  .archived-badge { font-family: var(--font-mono); font-size: 0.68rem; padding: 0.15rem 0.5rem; border-radius: 4px; background: rgba(255,255,255,0.05); color: var(--text-dim); width: fit-content; }
+
+  .pkg-row-summary { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+  .pkg-row-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: flex-end; }
+  .badge { font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-dim); background: rgba(255,255,255,0.04); border: 1px solid var(--border); padding: 0.1rem 0.45rem; border-radius: 3px; }
+  .pkg-row-arrow { color: var(--text-dim); font-size: 0.85rem; transition: transform 0.15s; }
+  .pkg-row:hover .pkg-row-arrow { transform: translate(2px,-2px); }
+
+  footer { max-width: 900px; margin: 0 auto; padding: 2rem 2.5rem; border-top: 1px solid var(--border); }
+  .footer-copy { font-size: 0.78rem; color: var(--text-dim); }
+</style>

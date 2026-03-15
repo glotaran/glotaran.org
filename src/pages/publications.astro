@@ -1,0 +1,125 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const publications = (await getCollection('publications'))
+  .sort((a, b) => b.data.year - a.data.year);
+---
+
+<Base title="Publications — GloTarAn" description="Papers describing the GloTarAn ecosystem tools.">
+  <div class="spectrum-bar"></div>
+
+  <nav>
+    <a href="/" class="nav-logo">
+      <span class="nav-logo-glo">Glo</span><span class="nav-logo-tar">Tar</span><span class="nav-logo-an">An</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/ecosystem">Ecosystem</a></li>
+      <li><a href="/packages/pyglotaran">pyglotaran</a></li>
+      <li><a href="/packages/timp">TIMP</a></li>
+      <li><a href="/publications" class="active">Publications</a></li>
+      <li><a href="/#community">Community</a></li>
+    </ul>
+    <a href="https://pyglotaran.readthedocs.io" class="nav-cta" target="_blank" rel="noopener">Documentation ↗</a>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <div class="section-label">Literature</div>
+      <h1><em>Cite</em> the work</h1>
+      <p class="page-intro">
+        If you use any GloTarAn tool in a publication, please cite the appropriate paper below.
+      </p>
+    </div>
+
+    <div class="pub-list">
+      {publications.map(async (pub) => {
+        const { Content } = await pub.render();
+        return (
+          <div class="pub-entry">
+            <div class="pub-header">
+              <span class="pub-year">{pub.data.year}</span>
+              <div class="pub-info">
+                <div class="pub-title">{pub.data.title}</div>
+                <div class="pub-authors">{pub.data.authors}</div>
+                <div class="pub-journal">{pub.data.journal}</div>
+                {pub.data.packages.length > 0 && (
+                  <div class="pub-packages">
+                    {pub.data.packages.map((slug) => (
+                      <a href={`/packages/${slug}`} class="pkg-tag">{slug}</a>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div class="pub-actions">
+                {pub.data.doi && (
+                  <a href={`https://doi.org/${pub.data.doi}`} class="pub-btn" target="_blank" rel="noopener">DOI ↗</a>
+                )}
+                {pub.data.bib && (
+                  <a href={`/bib/${pub.data.bib}`} class="pub-btn" download>BibTeX</a>
+                )}
+              </div>
+            </div>
+            <details class="pub-abstract">
+              <summary>Abstract / notes</summary>
+              <div class="prose">
+                <Content />
+              </div>
+            </details>
+          </div>
+        );
+      })}
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-copy">© Joris Snellenburg &amp; contributors · VU Amsterdam</div>
+  </footer>
+</Base>
+
+<style>
+  .spectrum-bar { height: 3px; background: linear-gradient(90deg, #9c27b0,#3f51b5,#03a9f4,#00bcd4,#4caf50,#cddc39,#ffc107,#ff5722,#f44336); }
+
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 2.5rem; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: rgba(12,14,18,0.92); backdrop-filter: blur(12px); z-index: 100; }
+  .nav-logo { display: flex; align-items: baseline; gap: 0.1em; text-decoration: none; }
+  .nav-logo-glo { font-family: var(--font-display); font-weight: 600; font-size: 1.4rem; color: var(--text); letter-spacing: -0.02em; }
+  .nav-logo-tar { font-family: var(--font-display); font-weight: 300; font-style: italic; font-size: 1.4rem; color: var(--text-muted); }
+  .nav-logo-an  { font-family: var(--font-display); font-weight: 600; font-size: 1.4rem; color: var(--text); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.875rem; transition: color 0.15s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--text); }
+  .nav-cta { background: transparent; border: 1px solid var(--border-hover); color: var(--text); padding: 0.45rem 1.1rem; border-radius: 6px; font-size: 0.875rem; text-decoration: none; }
+
+  main { max-width: 860px; margin: 0 auto; padding: 4rem 2.5rem 5rem; }
+
+  .section-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem; }
+  h1 { font-family: var(--font-display); font-size: 2.5rem; font-weight: 300; letter-spacing: -0.02em; color: var(--text); margin-bottom: 1rem; }
+  h1 em { font-style: italic; color: var(--text-muted); }
+  .page-intro { font-size: 1rem; color: var(--text-muted); margin-bottom: 3rem; }
+
+  .pub-list { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .pub-entry { background: var(--bg-card); padding: 1.5rem; }
+
+  .pub-header { display: grid; grid-template-columns: 3.5rem 1fr auto; gap: 1rem; align-items: start; }
+  .pub-year { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim); padding-top: 0.15rem; }
+  .pub-title { font-size: 0.95rem; color: var(--text); font-weight: 400; line-height: 1.4; margin-bottom: 0.35rem; }
+  .pub-authors { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.2rem; }
+  .pub-journal { font-size: 0.78rem; color: var(--text-dim); font-style: italic; margin-bottom: 0.5rem; }
+  .pub-packages { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .pkg-tag { font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent-py); background: rgba(79,195,247,0.08); border: 1px solid rgba(79,195,247,0.2); padding: 0.1rem 0.45rem; border-radius: 3px; text-decoration: none; }
+  .pkg-tag:hover { background: rgba(79,195,247,0.14); }
+
+  .pub-actions { display: flex; flex-direction: column; gap: 0.4rem; align-items: flex-end; }
+  .pub-btn { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); text-decoration: none; border: 1px solid var(--border); padding: 0.2rem 0.6rem; border-radius: 4px; white-space: nowrap; transition: color 0.15s, border-color 0.15s; }
+  .pub-btn:hover { color: var(--text); border-color: var(--border-hover); }
+
+  .pub-abstract { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+  .pub-abstract summary { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim); cursor: pointer; user-select: none; }
+  .pub-abstract summary:hover { color: var(--text-muted); }
+  .pub-abstract .prose { margin-top: 1rem; font-size: 0.875rem; color: var(--text-muted); line-height: 1.7; }
+  .pub-abstract .prose a { color: var(--accent-py); text-decoration: none; }
+  .pub-abstract .prose a:hover { text-decoration: underline; }
+
+  footer { max-width: 860px; margin: 0 auto; padding: 2rem 2.5rem; border-top: 1px solid var(--border); }
+  .footer-copy { font-size: 0.78rem; color: var(--text-dim); }
+</style>

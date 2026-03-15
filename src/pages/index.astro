@@ -1,5 +1,16 @@
 ---
+import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+
+const packages = (await getCollection('packages'))
+  .sort((a, b) => a.data.order - b.data.order);
+
+const publications = (await getCollection('publications'))
+  .sort((a, b) => b.data.year - a.data.year);
+
+const langLabel: Record<string, string> = { python: 'Python', r: 'R', java: 'Java' };
+const flagship = packages.find((p) => p.slug === 'pyglotaran')!;
+const rest = packages.filter((p) => p.slug !== 'pyglotaran');
 ---
 
 <Base>
@@ -12,10 +23,10 @@ import Base from '../layouts/Base.astro';
       <span class="nav-logo-glo">Glo</span><span class="nav-logo-tar">Tar</span><span class="nav-logo-an">An</span>
     </a>
     <ul class="nav-links">
-      <li><a href="#ecosystem">Ecosystem</a></li>
-      <li><a href="https://pyglotaran.readthedocs.io" target="_blank" rel="noopener">pyglotaran ↗</a></li>
-      <li><a href="https://cran.r-project.org/package=TIMP" target="_blank" rel="noopener">TIMP ↗</a></li>
-      <li><a href="#publications">Publications</a></li>
+      <li><a href="/ecosystem">Ecosystem</a></li>
+      <li><a href="/packages/pyglotaran">pyglotaran</a></li>
+      <li><a href="/packages/timp">TIMP</a></li>
+      <li><a href="/publications">Publications</a></li>
       <li><a href="#community">Community</a></li>
     </ul>
     <a href="https://pyglotaran.readthedocs.io" class="nav-cta" target="_blank" rel="noopener">Documentation ↗</a>
@@ -30,15 +41,15 @@ import Base from '../layouts/Base.astro';
       spectroscopy and microscopy data — from R and Java roots to a modern Python framework.
     </p>
     <div class="hero-actions">
-      <a href="https://pyglotaran.readthedocs.io" class="btn-primary" target="_blank" rel="noopener">Get started with pyglotaran</a>
-      <a href="#ecosystem" class="btn-ghost">Explore the ecosystem</a>
+      <a href="/packages/pyglotaran" class="btn-primary">Get started with pyglotaran</a>
+      <a href="/ecosystem" class="btn-ghost">Explore the ecosystem</a>
     </div>
     <div class="install-block">
       <span class="prefix">$</span>
       <span class="cmd">pip install pyglotaran pyglotaran-extras</span>
       <button
         class="install-copy"
-        onclick="navigator.clipboard.writeText('pip install pyglotaran pyglotaran-extras').then(()=>{ this.textContent='copied'; setTimeout(()=>this.textContent='copy',1500); })"
+        onclick="navigator.clipboard.writeText('pip install pyglotaran pyglotaran-extras')"
       >copy</button>
     </div>
 
@@ -101,60 +112,23 @@ import Base from '../layouts/Base.astro';
       </div>
     </div>
 
-    <!-- Package grid -->
+    <!-- Package grid — driven by src/content/packages/ -->
     <div class="ecosystem-grid">
-      <a href="https://github.com/glotaran/pyglotaran-extras" class="pkg-card py" target="_blank" rel="noopener">
-        <div class="pkg-header">
-          <span class="pkg-name">pyglotaran-extras</span>
-          <span class="pkg-arrow">↗</span>
-        </div>
-        <span class="pkg-lang py">Python</span>
-        <p class="pkg-desc">Extended plotting and visualization utilities. Publication-ready overview plots for spectral and kinetic results.</p>
-        <div class="pkg-meta">
-          <span class="pkg-badge">matplotlib</span>
-          <span class="pkg-badge">xarray</span>
-        </div>
-      </a>
-
-      <a href="https://cran.r-project.org/package=TIMP" class="pkg-card r" target="_blank" rel="noopener">
-        <div class="pkg-header">
-          <span class="pkg-name">TIMP</span>
-          <span class="pkg-arrow">↗</span>
-        </div>
-        <span class="pkg-lang r">R</span>
-        <p class="pkg-desc">The original partitioned variable projection engine for global analysis. CRAN package, basis for glotaran-legacy.</p>
-        <div class="pkg-meta">
-          <span class="pkg-badge">CRAN</span>
-          <span class="pkg-badge">VARPRO</span>
-          <span class="pkg-badge">FLIM</span>
-        </div>
-      </a>
-
-      <a href="https://github.com/glotaran/PyParamGUI" class="pkg-card r" target="_blank" rel="noopener">
-        <div class="pkg-header">
-          <span class="pkg-name">PyParamGUI</span>
-          <span class="pkg-arrow">↗</span>
-        </div>
-        <span class="pkg-lang py">Python</span>
-        <p class="pkg-desc">Interactive Jupyter widgets for teaching and demonstrating parameter estimation concepts.</p>
-        <div class="pkg-meta">
-          <span class="pkg-badge">ipywidgets</span>
-          <span class="pkg-badge">education</span>
-        </div>
-      </a>
-
-      <a href="https://github.com/glotaran/glotaran-legacy" class="pkg-card java" target="_blank" rel="noopener">
-        <div class="pkg-header">
-          <span class="pkg-name">glotaran-legacy</span>
-          <span class="pkg-arrow">↗</span>
-        </div>
-        <span class="pkg-lang archived">Java · Archived</span>
-        <p class="pkg-desc">The original GUI for TIMP described in the 2012 JSS paper. Runs on any Java 8+ platform. Superseded by pyglotaran.</p>
-        <div class="pkg-meta">
-          <span class="pkg-badge">v1.5.1</span>
-          <span class="pkg-badge">NetBeans</span>
-        </div>
-      </a>
+      {rest.map((pkg) => (
+        <a href={`/packages/${pkg.slug}`} class={`pkg-card ${pkg.data.lang}`}>
+          <div class="pkg-header">
+            <span class="pkg-name">{pkg.data.name}</span>
+            <span class="pkg-arrow">↗</span>
+          </div>
+          <span class={`pkg-lang ${pkg.data.status === 'archived' ? 'archived' : pkg.data.lang}`}>
+            {langLabel[pkg.data.lang]}{pkg.data.status === 'archived' ? ' · Archived' : ''}
+          </span>
+          <p class="pkg-desc">{pkg.data.summary}</p>
+          <div class="pkg-meta">
+            {pkg.data.badges.map((b) => <span class="pkg-badge">{b}</span>)}
+          </div>
+        </a>
+      ))}
     </div>
   </section>
 
@@ -166,44 +140,24 @@ import Base from '../layouts/Base.astro';
     <div class="section-title"><em>Cite</em> the work</div>
 
     <div class="pub-grid">
-      <div class="pub-card">
-        <span class="pub-year">2023</span>
-        <div>
-          <div class="pub-title">pyglotaran: a lego-like Python framework for global and target analysis of time-resolved spectra</div>
-          <div class="pub-authors">Snellenburg JJ, Weigand S, van Stokkum IHM et al.</div>
-          <div class="pub-journal">Photochemical &amp; Photobiological Sciences · DOI: 10.1007/s43630-023-00460-y</div>
+      {publications.map((pub) => (
+        <div class="pub-card">
+          <span class="pub-year">{pub.data.year}</span>
+          <div>
+            <div class="pub-title">{pub.data.title}</div>
+            <div class="pub-authors">{pub.data.authors}</div>
+            <div class="pub-journal">{pub.data.journal}{pub.data.doi ? ` · DOI: ${pub.data.doi}` : ''}</div>
+          </div>
+          <div class="pub-links">
+            {pub.data.doi && (
+              <a href={`https://doi.org/${pub.data.doi}`} class="pub-link" target="_blank" rel="noopener">DOI ↗</a>
+            )}
+            {pub.data.bib && (
+              <a href={`/bib/${pub.data.bib}`} class="pub-link" download>BibTeX</a>
+            )}
+          </div>
         </div>
-        <div class="pub-links">
-          <a href="https://doi.org/10.1007/s43630-023-00460-y" class="pub-link" target="_blank" rel="noopener">DOI ↗</a>
-          <a href="/bib/pyglotaran-2023.bib" class="pub-link">BibTeX</a>
-        </div>
-      </div>
-
-      <div class="pub-card">
-        <span class="pub-year">2012</span>
-        <div>
-          <div class="pub-title">Glotaran: A Java-Based Graphical User Interface for the R Package TIMP</div>
-          <div class="pub-authors">Snellenburg JJ, Laptenok SP, Seger R, Mullen KM, van Stokkum IHM</div>
-          <div class="pub-journal">Journal of Statistical Software 49(3) · DOI: 10.18637/jss.v049.i03</div>
-        </div>
-        <div class="pub-links">
-          <a href="https://doi.org/10.18637/jss.v049.i03" class="pub-link" target="_blank" rel="noopener">DOI ↗</a>
-          <a href="/bib/glotaran-2012.bib" class="pub-link">BibTeX</a>
-        </div>
-      </div>
-
-      <div class="pub-card">
-        <span class="pub-year">2007</span>
-        <div>
-          <div class="pub-title">TIMP: An R package for modeling multi-way spectroscopic measurements</div>
-          <div class="pub-authors">Mullen KM, van Stokkum IHM</div>
-          <div class="pub-journal">Journal of Statistical Software 18(3)</div>
-        </div>
-        <div class="pub-links">
-          <a href="https://www.jstatsoft.org/article/view/v018i03" class="pub-link" target="_blank" rel="noopener">DOI ↗</a>
-          <a href="/bib/timp-2007.bib" class="pub-link">BibTeX</a>
-        </div>
-      </div>
+      ))}
     </div>
   </section>
 
@@ -230,7 +184,7 @@ import Base from '../layouts/Base.astro';
         <div class="community-name">Mailing list</div>
         <div class="community-desc">Google Groups — longer discussions and announcements.</div>
       </a>
-      <a href="https://github.com/glotaran/pyglotaran-publications" class="community-card" target="_blank" rel="noopener">
+      <a href="/publications" class="community-card">
         <div class="community-icon">◈</div>
         <div class="community-name">Publications</div>
         <div class="community-desc">Papers using pyglotaran and TIMP submitted by the community.</div>
@@ -333,7 +287,7 @@ import Base from '../layouts/Base.astro';
   .divider { height: 1px; background: var(--border); max-width: 1100px; margin: 0 auto; }
 
   /* ─── SECTIONS ─── */
-  section { max-width: 1100px; margin: 0 auto; padding: 5rem 2.5rem; scroll-margin-top: 6rem; }
+  section { max-width: 1100px; margin: 0 auto; padding: 5rem 2.5rem; }
   .section-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem; }
   .section-title { font-family: var(--font-display); font-size: 2rem; font-weight: 300; letter-spacing: -0.02em; color: var(--text); margin-bottom: 3rem; }
   .section-title em { font-style: italic; color: var(--text-muted); }
