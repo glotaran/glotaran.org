@@ -18,3 +18,6 @@ Thumbs.db
 
 # Release archives
 *.tar.gz
+
+# Ignore the temp folder with the old glotaran.org website content
+tmp.glotaran.org/
