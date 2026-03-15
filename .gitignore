@@ -21,3 +21,5 @@ Thumbs.db
 
 # Ignore the temp folder with the old glotaran.org website content
 tmp.glotaran.org/
+# and the old .io content.
+tmp.glotaran.github.io

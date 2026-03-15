@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import SiteNav from '../components/SiteNav.astro';
 
 const publications = (await getCollection('publications'))
   .sort((a, b) => b.data.year - a.data.year);
@@ -9,19 +10,7 @@ const publications = (await getCollection('publications'))
 <Base title="Publications — GloTarAn" description="Papers describing the GloTarAn ecosystem tools.">
   <div class="spectrum-bar"></div>
 
-  <nav>
-    <a href="/" class="nav-logo">
-      <span class="nav-logo-glo">Glo</span><span class="nav-logo-tar">Tar</span><span class="nav-logo-an">An</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="/ecosystem">Ecosystem</a></li>
-      <li><a href="/packages/pyglotaran">pyglotaran</a></li>
-      <li><a href="/packages/timp">TIMP</a></li>
-      <li><a href="/publications" class="active">Publications</a></li>
-      <li><a href="/#community">Community</a></li>
-    </ul>
-    <a href="https://pyglotaran.readthedocs.io" class="nav-cta" target="_blank" rel="noopener">Documentation ↗</a>
-  </nav>
+  <SiteNav active="publications" />
 
   <main>
     <div class="page-header">

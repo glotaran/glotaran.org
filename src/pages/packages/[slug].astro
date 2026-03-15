@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import SiteNav from '../../components/SiteNav.astro';
 
 export async function getStaticPaths() {
   const packages = await getCollection('packages');
@@ -24,24 +25,20 @@ const statusLabel: Record<string, string> = {
   stable: 'Stable',
   archived: 'Archived',
 };
+
+const activeNav = pkg.slug === 'glotaran-legacy'
+  ? 'legacy'
+  : pkg.slug === 'pyglotaran'
+    ? 'pyglotaran'
+    : pkg.slug === 'timp'
+      ? 'timp'
+      : undefined;
 ---
 
 <Base title={`${pkg.data.name} — GloTarAn`} description={pkg.data.summary}>
   <div class="spectrum-bar"></div>
 
-  <nav>
-    <a href="/" class="nav-logo">
-      <span class="nav-logo-glo">Glo</span><span class="nav-logo-tar">Tar</span><span class="nav-logo-an">An</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="/ecosystem">Ecosystem</a></li>
-      <li><a href="/packages/pyglotaran">pyglotaran</a></li>
-      <li><a href="/packages/timp">TIMP</a></li>
-      <li><a href="/publications">Publications</a></li>
-      <li><a href="/#community">Community</a></li>
-    </ul>
-    <a href="https://pyglotaran.readthedocs.io" class="nav-cta" target="_blank" rel="noopener">Documentation ↗</a>
-  </nav>
+  <SiteNav active={activeNav} />
 
   <main>
     <div class="pkg-hero">
