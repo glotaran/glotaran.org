@@ -38,6 +38,8 @@ produce a tarball without creating a release.
 ## Repository layout
 
 ```
+AGENTS.md                  Agent entry point for repo-specific guidance
+docs/ai/                   Linked reference docs for coding agents
 src/
   layouts/Base.astro      HTML shell, fonts, global styles
   pages/index.astro       Homepage
