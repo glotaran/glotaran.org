@@ -19,7 +19,7 @@ users do not have to dig through the archived website structure.
 
 ## Existing users start here
 
-- Open the [legacy resources page](/packages/glotaran-legacy/resources) for a
+- Open the [legacy resources page](/software/glotaran-legacy/resources) for a
   curated entry point to the archived documentation and original screencast.
 - Use the full [legacy documentation site](https://glotaran.github.io/legacy/)
   when you need installation notes, workflow details, file formats, or other
@@ -37,7 +37,7 @@ The software was first released in 2011 and described in the
 but the codebase is maintained on GitHub and the 1.5.1 release remains
 functional for users who prefer a standalone desktop application.
 
-**New users should start with [pyglotaran](/packages/pyglotaran)**, which provides
+**New users should start with [pyglotaran](/software/pyglotaran)**, which provides
 the same analytical capabilities with a modern Python interface, active
 development, and better integration with the scientific software ecosystem.
 
@@ -46,7 +46,7 @@ development, and better integration with the scientific software ecosystem.
 The redesigned site now keeps legacy Java UI support material close to this
 package page instead of recreating the old standalone website structure.
 
-- Visit the [legacy resources page](/packages/glotaran-legacy/resources) for a
+- Visit the [legacy resources page](/software/glotaran-legacy/resources) for a
   curated entry point to documentation and the original getting-started
   screencast.
 - Use the [legacy documentation site](https://glotaran.github.io/legacy/) when

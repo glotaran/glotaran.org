@@ -16,7 +16,7 @@ badges:
   - Jupyter
 ---
 
-pyglotaran is the modern Python successor to [glotaran-legacy](/packages/glotaran-legacy).
+pyglotaran is the modern Python successor to [glotaran-legacy](/software/glotaran-legacy).
 It provides a declarative, YAML-based model specification language and a
 flexible kinetic model library built around the scientific Python stack.
 

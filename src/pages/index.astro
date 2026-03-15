@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import SiteNav from '../components/SiteNav.astro';
 
-const packages = (await getCollection('packages'))
+const packages = (await getCollection('software'))
   .sort((a, b) => a.data.order - b.data.order);
 
 const publications = (await getCollection('publications'))
@@ -30,7 +30,7 @@ const rest = packages.filter((p) => p.slug !== 'pyglotaran');
       spectroscopy and microscopy data — from R and Java roots to a modern Python framework.
     </p>
     <div class="hero-actions">
-      <a href="/packages/pyglotaran" class="btn-primary">Get started with pyglotaran</a>
+      <a href="/software/pyglotaran" class="btn-primary">Get started with pyglotaran</a>
       <a href="/ecosystem" class="btn-ghost">Explore the ecosystem</a>
     </div>
     <div class="install-block">
@@ -104,7 +104,7 @@ const rest = packages.filter((p) => p.slug !== 'pyglotaran');
     <!-- Package grid — driven by src/content/packages/ -->
     <div class="ecosystem-grid">
       {rest.map((pkg) => (
-        <a href={`/packages/${pkg.slug}`} class={`pkg-card ${pkg.data.lang}`}>
+        <a href={`/software/${pkg.slug}`} class={`pkg-card ${pkg.data.lang}`}>
           <div class="pkg-header">
             <span class="pkg-name">{pkg.data.name}</span>
             <span class="pkg-arrow">↗</span>

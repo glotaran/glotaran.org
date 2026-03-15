@@ -35,7 +35,7 @@ const publications = (await getCollection('publications'))
                 {pub.data.packages.length > 0 && (
                   <div class="pub-packages">
                     {pub.data.packages.map((slug) => (
-                      <a href={`/packages/${slug}`} class="pkg-tag">{slug}</a>
+                      <a href={`/software/${slug}`} class="pkg-tag">{slug}</a>
                     ))}
                   </div>
                 )}

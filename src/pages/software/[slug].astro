@@ -4,7 +4,7 @@ import Base from '../../layouts/Base.astro';
 import SiteNav from '../../components/SiteNav.astro';
 
 export async function getStaticPaths() {
-  const packages = await getCollection('packages');
+  const packages = await getCollection('software');
   return packages.map((pkg) => ({
     params: { slug: pkg.slug },
     props: { pkg },

@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import SiteNav from '../components/SiteNav.astro';
 
-const packages = (await getCollection('packages'))
+const packages = (await getCollection('software'))
   .sort((a, b) => a.data.order - b.data.order);
 
 const langLabel: Record<string, string> = { python: 'Python', r: 'R', java: 'Java' };
@@ -20,13 +20,13 @@ const langLabel: Record<string, string> = { python: 'Python', r: 'R', java: 'Jav
       <h1>The <em>ecosystem</em></h1>
       <p class="page-intro">
         GloTarAn is a family of tools spanning Python, R, and Java.
-        New users should start with <a href="/packages/pyglotaran">pyglotaran</a>.
+        New users should start with <a href="/software/pyglotaran">pyglotaran</a>.
       </p>
     </div>
 
     <div class="pkg-list">
       {packages.map((pkg) => (
-        <a href={`/packages/${pkg.slug}`} class={`pkg-row ${pkg.data.lang} ${pkg.data.status === 'archived' ? 'archived' : ''}`}>
+        <a href={`/software/${pkg.slug}`} class={`pkg-row ${pkg.data.lang} ${pkg.data.status === 'archived' ? 'archived' : ''}`}>
           <div class="pkg-row-left">
             <span class="pkg-row-name">{pkg.data.name}</span>
             <span class={`lang-badge ${pkg.data.lang}`}>{langLabel[pkg.data.lang]}</span>
