@@ -71,6 +71,12 @@ const activeNav = pkg.slug === 'glotaran-legacy'
       {pkg.data.version && (
         <div class="pkg-version">latest: <code>{pkg.data.version}</code></div>
       )}
+
+      {pkg.data.badges.length > 0 && (
+        <div class="pkg-badges">
+          {pkg.data.badges.map((b: string) => <span class="pkg-badge">{b}</span>)}
+        </div>
+      )}
     </div>
 
     <div class="pkg-body">
@@ -124,25 +130,45 @@ const activeNav = pkg.slug === 'glotaran-legacy'
   .pkg-version { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-dim); }
   .pkg-version code { color: var(--text-muted); }
 
+  .pkg-badges { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+  .pkg-badge { font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-dim); border: 1px solid var(--border); padding: 0.15rem 0.55rem; border-radius: 10rem; letter-spacing: 0.01em; }
+
   /* ─── PROSE ─── */
+  .pkg-body { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; padding: 2.5rem 2.5rem 2rem; }
+
   .prose { color: var(--text-muted); line-height: 1.75; font-size: 0.95rem; }
-  .prose h2 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 300; color: var(--text); margin: 2.5rem 0 0.75rem; letter-spacing: -0.01em; }
-  .prose h3 { font-family: var(--font-mono); font-size: 0.95rem; font-weight: 500; color: var(--text); margin: 1.75rem 0 0.5rem; }
-  .prose p  { margin-bottom: 1rem; }
-  .prose a  { color: var(--accent-py); text-decoration: none; }
-  .prose a:hover { text-decoration: underline; }
-  .prose ul, .prose ol { padding-left: 1.5rem; margin-bottom: 1rem; }
-  .prose li { margin-bottom: 0.4rem; }
-  .prose strong { color: var(--text); font-weight: 500; }
-  .prose blockquote { border-left: 2px solid var(--border-hover); padding-left: 1rem; color: var(--text-dim); font-style: italic; margin: 1.5rem 0; }
-  .prose pre { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem 1.5rem; overflow-x: auto; margin: 1.5rem 0; }
-  .prose code { font-family: var(--font-mono); font-size: 0.85em; }
-  .prose pre code { font-size: 0.82rem; color: var(--text); background: none; }
-  .prose :not(pre) > code { background: rgba(255,255,255,0.06); padding: 0.15em 0.4em; border-radius: 3px; color: var(--accent-py); }
-  .prose hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+  .prose :global(h2) { font-family: var(--font-display); font-size: 1.4rem; font-weight: 300; color: var(--text); margin: 3rem 0 1rem; letter-spacing: -0.01em; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+  .prose :global(h2:first-child) { margin-top: 0; }
+  .prose :global(h3) { font-family: var(--font-mono); font-size: 0.95rem; font-weight: 500; color: var(--text); margin: 2rem 0 0.6rem; }
+  .prose :global(p)  { margin-bottom: 1rem; }
+  .prose :global(a)  { color: var(--accent-py); text-decoration: none; }
+  .prose :global(a:hover) { text-decoration: underline; }
+
+  .prose :global(ul), .prose :global(ol) { padding-left: 1.5rem; margin-bottom: 1.25rem; }
+  .prose :global(ul) { list-style: disc; }
+  .prose :global(ul li::marker) { color: var(--text-dim); }
+  .prose :global(ol) { list-style-position: outside; }
+  .prose :global(li) { margin-bottom: 0.5rem; line-height: 1.7; padding-left: 0.35rem; }
+
+  .prose :global(strong) { color: var(--text); font-weight: 500; }
+  .prose :global(blockquote) { border-left: 2px solid var(--accent-py); padding: 0.75rem 1.25rem; color: var(--text-dim); font-style: italic; margin: 1.5rem 0; background: rgba(79,195,247,0.04); border-radius: 0 6px 6px 0; }
+
+  .prose :global(pre) { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem 1.5rem; overflow-x: auto; margin: 1.75rem 0; position: relative; }
+  .prose :global(code) { font-family: var(--font-mono); font-size: 0.85em; }
+  .prose :global(pre code) { font-size: 0.82rem; color: var(--text); background: none; }
+  .prose :global(:not(pre) > code) { background: rgba(255,255,255,0.06); padding: 0.15em 0.4em; border-radius: 3px; color: var(--accent-py); }
+  .prose :global(hr) { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
 
   footer { max-width: 800px; margin: 0 auto; padding: 2rem 2.5rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
   .footer-copy { font-size: 0.78rem; color: var(--text-dim); }
   .footer-back { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-dim); text-decoration: none; transition: color 0.15s; }
   .footer-back:hover { color: var(--text-muted); }
+
+  @media (max-width: 640px) {
+    main { padding: 0 1.25rem 3rem; }
+    .pkg-hero { padding: 2.5rem 0 2rem; }
+    .pkg-body { padding: 1.5rem 1.25rem 1.25rem; }
+    h1 { font-size: 1.5rem; }
+    footer { padding: 1.5rem 1.25rem; }
+  }
 </style>

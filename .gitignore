@@ -19,7 +19,5 @@ Thumbs.db
 # Release archives
 *.tar.gz
 
-# Ignore the temp folder with the old glotaran.org website content
-tmp.glotaran.org/
-# and the old .io content.
-tmp.glotaran.github.io
+# Ignore the temp folders with reference material for the redesign (old site, etc)
+tmp.*/
