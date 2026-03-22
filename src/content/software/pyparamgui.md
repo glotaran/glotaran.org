@@ -1,10 +1,10 @@
 ---
-name: PyParamGUI
+name: pyparamgui
 lang: python
 status: wip
 order: 5
 summary: An early proof-of-concept to re-create paramGUI-style teaching widgets on top of pyglotaran.
-github: https://github.com/glotaran/PyParamGUI
+github: https://github.com/glotaran/pyparamgui
 badges:
   - ipywidgets
   - education
@@ -35,21 +35,20 @@ Because the package is not yet on PyPI, install it directly from GitHub.
 The easiest way is a one-off ephemeral session with [uv](https://docs.astral.sh/uv/):
 
 ```sh
-uv run --with "pyparamgui @ git+https://github.com/glotaran/PyParamGUI" \
-       --with jupyter \
-       jupyter lab
+uv run --with "pyparamgui @ git+https://github.com/glotaran/pyparamgui" --with jupyter jupyter lab
 ```
 
 Then inside a notebook:
 
 ```python
-from pyparamgui import show
+from pyparamgui import Widget
 
-show()
+widget = Widget()
+widget
 ```
 
 Alternatively, add it to a project environment:
 
 ```sh
-uv pip install "pyparamgui @ git+https://github.com/glotaran/PyParamGUI"
+uv pip install "pyparamgui @ git+https://github.com/glotaran/pyparamgui"
 ```
