@@ -3,7 +3,7 @@ name: PyParamGUI
 lang: python
 status: active
 order: 4
-summary: Interactive Jupyter notebook widgets for teaching parameter estimation concepts in global analysis.
+summary: Interactive Jupyter widgets for learning and teaching parameter estimation in global analysis.
 github: https://github.com/glotaran/PyParamGUI
 badges:
   - ipywidgets

@@ -3,7 +3,7 @@ name: TIMP
 lang: r
 status: stable
 order: 3
-summary: R package for multi-way spectroscopy, global and target analysis, and partitioned variable projection in the original Glotaran stack.
+summary: The foundational R engine for global and target analysis, providing partitioned variable projection since 2007.
 cran: https://cran.r-project.org/web/packages/TIMP/
 github: https://github.com/glotaran/TIMP
 badges:
@@ -12,61 +12,68 @@ badges:
   - FLIM
 ---
 
-TIMP is the R package that the original Glotaran stack was built around. The
-2007 paper presents it as an open, cross-platform problem-solving environment
-for fitting superposition models to multi-way spectroscopic measurements.
+TIMP implements partitioned variable projection for separable nonlinear
+least-squares problems. By splitting conditionally linear parameters from
+intrinsically nonlinear ones it reduces the effective search space and, more
+importantly, the memory footprint — making it practical to fit large
+time-wavelength matrices that would be expensive with standard variable
+projection.
 
-The paper also notes that the name refers back to the earlier tim collection of
-FORTRAN routines developed for modeling time-resolved spectroscopy data; it says
-explicitly that TIMP stands for "tim package."
+The name refers back to the earlier *tim* collection of FORTRAN routines for
+modeling time-resolved spectroscopy data, which could not be published due to
+library licensing constraints. TIMP was the first attempt to free this software
+by rebuilding it on the open foundation of the R ecosystem as an R package —
+hence, presumably, the name.
 
-The package was designed for what the paper calls "interactive scientific model
-discovery": formulate a candidate model, fit it, validate the result, and then
-refine the model if the residuals or parameter estimates show that more work is
-needed.
+Published in the *Journal of Statistical Software* in 2007, TIMP is the R
+engine on which the original Glotaran desktop application was built. The Java
+GUI added interactive data exploration and visual model specification, while
+TIMP remained the computational core.
 
-Its key technical contribution is partitioned variable projection. TIMP uses it
-to separate conditionally linear parameters from intrinsically nonlinear ones,
-reducing the effective nonlinear search space and, as the paper emphasizes,
-allowing large spectroscopy fitting problems to be handled with less memory than
-standard variable projection implementations.
+TIMP is designed around what its authors call "interactive scientific model
+discovery": formulate a candidate model, fit it, inspect the residuals and
+parameter estimates, then refine the model until the fit is satisfactory.
 
-The later Glotaran paper describes the Java application as a graphical front end
-to TIMP's mathematical framework and computational algorithms. TIMP remained the
-modeling engine, while Glotaran added interactive data exploration, assisted
-model specification, and result inspection.
+## Capabilities
 
-## What TIMP Provided
+TIMP handles multiple datasets collected under related conditions, sharing
+parameters across experiments where appropriate and fitting others per dataset.
 
-TIMP was built to handle multiple datasets collected under related conditions,
-share parameters across experiments when appropriate, and fit other parameters
-per dataset when the experimental design required that.
+### Kinetic models
 
-The package supports multiexponential kinetics, Gaussian or measured
-instrument response functions, wavelength-dependent dispersion, coherent
-artifacts, sequential and parallel compartment models, full transfer-matrix
-schemes, and spectral descriptions based on Gaussian, Lorentzian, Voigt,
-skewed-Gaussian, and spline-based parameterizations. It also includes practical
-tools for constraints and parameter relations, including positivity
-constraints, zero constraints, and linked parameters across selected regions or
-datasets.
+- Sequential and parallel compartment schemes
+- Full transfer-matrix (target) models
+- Multiexponential kinetics with any number of components
 
-The paper also presents TIMP as a framework that can be extended to new model
-types with relatively little additional code.
+### Instrument response and dispersion
+
+- Gaussian or measured instrument response functions
+- Wavelength-dependent dispersion modeling
+- Coherent artifact terms
+
+### Spectral parameterizations
+
+- Gaussian, Lorentzian, Voigt, and skewed-Gaussian lineshapes
+- Spline-based spectral descriptions
+
+### Constraints and parameter relations
+
+- Positivity and zero constraints on selected parameters
+- Linked parameters across spectral regions or datasets
+- Shared and dataset-specific parameter partitioning
+
+### Additional domains
+
+- Fluorescence Lifetime Imaging Microscopy (FLIM)
+- Any data described by a superposition model with separable linear/nonlinear
+  parameters
 
 ## Representative Example
 
-One of the paper's case studies fits two transient spectroscopy datasets
-measured at different laser intensities, using a five-component sequential model
-with a Gaussian instrument response, wavelength-dependent dispersion, a coherent
-artifact term, and a mix of shared and dataset-specific parameters.
-
-That example is more representative of TIMP than a minimal two-exponential fit.
-It shows the package being used for simultaneous analysis of full time-wavelength
-datasets, with explicit modeling of compartments, lifetimes, instrument
-response, and experiment-to-experiment differences.
-
-In code, that workflow starts along these lines:
+The code below fits two transient spectroscopy datasets measured at different
+laser intensities with a five-component sequential model, Gaussian IRF,
+wavelength-dependent dispersion, a coherent artifact term, and a mix of shared
+and dataset-specific parameters:
 
 ```r
 library(TIMP)
@@ -94,18 +101,19 @@ result <- fitModel(
 )
 ```
 
-The exact syntax is less important than the modeling structure behind it. TIMP
-lets the user specify compartments, rate constants, instrument response,
-dispersion, artifacts, spectral constraints, and dataset-to-dataset differences
-within one fit.
+Compartments, rate constants, instrument response, dispersion, artifacts,
+spectral constraints, and dataset-to-dataset differences are all expressed
+within a single fit.
 
-## Where TIMP Was Used
+## Where TIMP is used
+
+TIMP is applied wherever multi-way data can be described as a superposition
+model with separable parameters:
 
 - Transient absorption spectroscopy
 - Time-resolved fluorescence
 - Fluorescence Lifetime Imaging Microscopy (FLIM)
 - Multi-experiment global and target analysis across related datasets
-- Any dataset that can be described as a superposition model with separable linear/nonlinear parameters
 
 ## Installation
 

@@ -16,10 +16,10 @@ import SiteNav from '../../../components/SiteNav.astro';
       </div>
       <h1>Legacy resources for Glotaran 1.x</h1>
       <p class="hero-copy">
-        This page preserves the most useful support material from the previous
+        Curated documentation and tutorial material from the original
         glotaran.org site for users who still work with the Java desktop
-        application. It is intentionally curated: use it as an entry point,
-        then follow the archived documentation when you need the full reference.
+        application. Use this page as an entry point, then follow the archived
+        documentation when you need the full reference.
       </p>
       <div class="hero-actions">
         <a href="https://glotaran.github.io/legacy/" class="link-btn primary" target="_blank" rel="noopener">Open legacy documentation ↗</a>
@@ -66,8 +66,10 @@ import SiteNav from '../../../components/SiteNav.astro';
         <div>
           <h3>Getting started with Glotaran</h3>
           <p>
-            The screencast uses a sample dataset bundled with the legacy
-            application and walks through the complete analysis cycle.
+            The screencast uses a sample dataset bundled with the application
+            and walks through the full analysis cycle — from data import and
+            SVD inspection through model building on the analysis canvas to
+            fitted spectra and residual review.
           </p>
         </div>
         <a href="https://www.youtube.com/watch?v=ZeVuBustiYQ" class="link-btn primary" target="_blank" rel="noopener">Open on YouTube ↗</a>
@@ -80,31 +82,19 @@ import SiteNav from '../../../components/SiteNav.astro';
             <li>Importing a spectroscopy dataset and inspecting the raw data.</li>
             <li>Applying preprocessing such as baseline correction and resampling.</li>
             <li>Using singular value decomposition to estimate model complexity.</li>
-            <li>Building an analysis scheme for global or target analysis.</li>
-            <li>Running the optimization and reviewing spectra, traces, and residuals.</li>
+            <li>Building an analysis scheme on the drag-and-drop canvas.</li>
+            <li>Running the optimization and reviewing EAS/DAS/SAS spectra, traces, and residuals.</li>
           </ul>
         </article>
         <article class="card">
           <h3>Why it still matters</h3>
           <ul>
-            <li>It explains the working model behind the legacy interface.</li>
+            <li>It demonstrates the visual analysis canvas that made Glotaran a reference for scientific interface design.</li>
             <li>It helps existing users reconnect terminology in the GUI with the published methodology.</li>
-            <li>It preserves practical know-how that was previously buried in the old site.</li>
+            <li>It preserves practical know-how that was previously only available through the old site.</li>
           </ul>
         </article>
       </div>
-    </section>
-
-    <section class="section compact">
-      <div class="section-label">Context</div>
-      <h2>What this page does not try to preserve</h2>
-      <p>
-        Historical site chrome, iframe wrappers, obsolete video formats, and the
-        old download-page layout were intentionally left behind. For binaries,
-        use the current
-        <a href="https://github.com/glotaran/glotaran-legacy/releases" target="_blank" rel="noopener">GitHub releases page</a>.
-        For new workflows, start with <a href="/software/pyglotaran">pyglotaran</a>.
-      </p>
     </section>
   </main>
 
@@ -133,14 +123,13 @@ import SiteNav from '../../../components/SiteNav.astro';
   .hero { padding: 4rem 0 3rem; border-bottom: 1px solid var(--border); margin-bottom: 3rem; }
   .hero-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem; }
   .eyebrow, .status { font-family: var(--font-mono); font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 4px; }
-  .eyebrow { background: rgba(165,214,167,0.12); color: var(--accent-java); }
+  .eyebrow { background: rgba(248,152,32,0.12); color: var(--accent-java); }
   .status { background: rgba(255,255,255,0.05); color: var(--text-dim); }
   h1 { font-family: var(--font-display); font-weight: 300; font-size: clamp(2.2rem, 5vw, 3.5rem); line-height: 1.08; letter-spacing: -0.03em; max-width: 14ch; margin-bottom: 1rem; }
   .hero-copy { color: var(--text-muted); max-width: 700px; font-size: 1.02rem; margin-bottom: 1.75rem; }
   .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
 
   .section { padding: 0 0 3rem; }
-  .section.compact { padding-bottom: 0; }
   .section-label { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.75rem; }
   h2 { font-family: var(--font-display); font-size: 1.8rem; font-weight: 300; letter-spacing: -0.02em; margin-bottom: 0.9rem; }
   h3 { font-family: var(--font-mono); font-size: 0.95rem; font-weight: 500; margin-bottom: 0.75rem; }

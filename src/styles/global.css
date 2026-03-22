@@ -9,9 +9,9 @@
   --text: #e8eaf0;
   --text-muted: #8890a4;
   --text-dim: #555d72;
-  --accent-py: #4fc3f7;
-  --accent-r: #ef9a9a;
-  --accent-java: #a5d6a7;
+  --accent-py: #4ade80;
+  --accent-r: #75aadb;
+  --accent-java: #f89820;
   --accent-gold: #ffd54f;
   --font-body: 'DM Sans', sans-serif;
   --font-display: 'Fraunces', serif;
@@ -27,6 +27,11 @@ body {
   font-weight: 300;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Disable Fraunces "wonky" alternate glyphs (WONK=1 by default makes f etc. look unusual) */
+:root {
+  font-variation-settings: 'WONK' 0;
 }
 
 a { color: inherit; }

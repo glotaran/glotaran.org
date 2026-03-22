@@ -23,11 +23,12 @@ const rest = packages.filter((p) => p.slug !== 'pyglotaran');
 
   <!-- Hero -->
   <div class="hero">
-    <div class="hero-eyebrow">Global &amp; Target Analysis · Time-Resolved Spectroscopy</div>
-    <h1>Modeling frameworks<br />for <em>time-resolved</em> spectra</h1>
+    <div class="hero-eyebrow">Open-source · Global &amp; Target Analysis · Time-resolved · Spectroscopy · FLIM · Multi-way Data</div>
+    <h1>Modeling frameworks<br />for <em>separable</em> data</h1>
     <p class="hero-sub">
-      A suite of open-source tools for global and target analysis of time-resolved
-      spectroscopy and microscopy data — from R and Java roots to a modern Python framework.
+      Open-source tools for global and target analysis of time-resolved spectroscopy,
+      fluorescence lifetime imaging, and multi-way data — from photosynthesis and
+      photovoltaics to photochemistry and beyond.
     </p>
     <div class="hero-actions">
       <a href="/software/pyglotaran" class="btn-primary">Get started with pyglotaran</a>
@@ -58,8 +59,34 @@ const rest = packages.filter((p) => p.slug !== 'pyglotaran');
 
   <div class="divider"></div>
 
+  <!-- Heritage timeline -->
+  <section class="timeline">
+    <div class="timeline-track">
+      <div class="timeline-stop">
+        <span class="timeline-year">2007</span>
+        <span class="timeline-name">TIMP</span>
+        <span class="timeline-note">R engine for partitioned variable projection</span>
+      </div>
+      <div class="timeline-line"></div>
+      <div class="timeline-stop">
+        <span class="timeline-year">2012</span>
+        <span class="timeline-name">Glotaran</span>
+        <span class="timeline-note">Java desktop interface for TIMP</span>
+      </div>
+      <div class="timeline-line"></div>
+      <div class="timeline-stop">
+        <span class="timeline-year">2023</span>
+        <span class="timeline-name">pyglotaran</span>
+        <span class="timeline-note">Modern Python framework — the flagship</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
   <!-- Ecosystem section -->
   <section id="ecosystem">
+    <p class="pull-quote"><em>Decompose your data. Discover your kinetics.</em></p>
     <div class="section-label">Packages</div>
     <div class="section-title">The <em>ecosystem</em></div>
 
@@ -72,16 +99,16 @@ const rest = packages.filter((p) => p.slug !== 'pyglotaran');
         </div>
         <h2>pyglotaran</h2>
         <p>
-          A LEGO-like Python framework for global and target analysis of time-resolved spectra.
-          Declarative model specification in YAML, extensible kinetic schemes, and tight
-          integration with the scientific Python stack.
+          Build kinetic models for your time-resolved data in Python.
+          Describe your model in YAML, fit it with partitioned variable projection, and
+          visualise publication-ready results — all within a Jupyter notebook.
         </p>
         <ul class="feature-list">
-          <li>Partitioned variable projection (VARPRO)</li>
-          <li>Simultaneous analysis of multiple datasets</li>
-          <li>Extensible kinetic model library</li>
-          <li>Jupyter-native workflow</li>
-          <li>Cross-validated against TIMP</li>
+          <li>Partitioned variable projection for efficient fitting</li>
+          <li>Analyse multiple datasets simultaneously</li>
+          <li>Extend with custom kinetic and spectral models</li>
+          <li>Jupyter-native, built on NumPy and xarray</li>
+          <li>Cross-validated against two decades of TIMP results</li>
         </ul>
       </div>
       <div class="code-block">
@@ -125,6 +152,7 @@ const rest = packages.filter((p) => p.slug !== 'pyglotaran');
 
   <!-- Publications -->
   <section id="publications">
+    <p class="pull-quote"><em>From raw spectra to kinetic models you can defend.</em></p>
     <div class="section-label">Literature</div>
     <div class="section-title"><em>Cite</em> the work</div>
 
@@ -156,6 +184,10 @@ const rest = packages.filter((p) => p.slug !== 'pyglotaran');
   <section id="community">
     <div class="section-label">Community</div>
     <div class="section-title">Get <em>help</em>, contribute</div>
+    <p class="section-intro">
+      Whether you are fitting your first decay or building custom megacomplexes,
+      you are welcome here. Ask questions, share results, or help improve the code.
+    </p>
 
     <div class="community-grid">
       <a href="https://discord.gg/KfnEYRSTJx" class="community-card" target="_blank" rel="noopener">
@@ -188,8 +220,10 @@ const rest = packages.filter((p) => p.slug !== 'pyglotaran');
     <div>
       <div class="footer-logo">GloTarAn</div>
       <div class="footer-copy">
-        Open-source software for global and target analysis.<br />
-        © Joris Snellenburg &amp; contributors · VU Amsterdam
+        From photons to insight.<br />
+        <span class="nm" title="&quot;What… is your favourite wavelength?&quot;&#10;&quot;532 nm!&quot;&#10;&quot;Right. Off you go.&quot;">
+          © Joris Snellenburg &amp; contributors · VU Amsterdam
+        </span> 
       </div>
     </div>
     <div class="footer-links">
@@ -275,6 +309,25 @@ const rest = packages.filter((p) => p.slug !== 'pyglotaran');
   /* ─── DIVIDER ─── */
   .divider { height: 1px; background: var(--border); max-width: 1100px; margin: 0 auto; }
 
+  /* ─── HERITAGE TIMELINE ─── */
+  .timeline { max-width: 800px; margin: 0 auto; padding: 3rem 2.5rem 2rem; }
+  .timeline-track { display: flex; align-items: center; justify-content: center; gap: 0; }
+  .timeline-stop { display: flex; flex-direction: column; align-items: center; gap: 0.25rem; text-align: center; flex: 0 0 auto; padding: 0 1rem; }
+  .timeline-year { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-py); letter-spacing: 0.05em; }
+  .timeline-name { font-family: var(--font-mono); font-size: 0.85rem; font-weight: 500; color: var(--text); }
+  .timeline-note { font-size: 0.75rem; color: var(--text-dim); max-width: 180px; line-height: 1.35; }
+  .timeline-line { flex: 1; height: 1px; min-width: 2rem; background: var(--border-hover); }
+  @media (max-width: 600px) {
+    .timeline-track { flex-direction: column; gap: 0.75rem; }
+    .timeline-line { width: 1px; height: 1.5rem; min-width: 0; }
+  }
+
+  /* ─── PULL QUOTES ─── */
+  .pull-quote { font-family: var(--font-display); font-size: 1.15rem; font-weight: 300; color: var(--text-muted); text-align: center; margin-bottom: 2.5rem; letter-spacing: -0.01em; }
+
+  /* ─── SECTION INTRO ─── */
+  .section-intro { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 2rem; max-width: 640px; }
+
   /* ─── SECTIONS ─── */
   section { max-width: 1100px; margin: 0 auto; padding: 5rem 2.5rem; }
   .section-label { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem; }
@@ -284,14 +337,14 @@ const rest = packages.filter((p) => p.slug !== 'pyglotaran');
   /* ─── FEATURED CARD ─── */
   .featured-card {
     background: var(--bg-card); border: 1px solid var(--border);
-    border-top: 2px solid rgba(79,195,247,0.4);
+    border-top: 2px solid rgba(74,222,128,0.4);
     border-radius: 10px; padding: 2.5rem;
     display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem;
     align-items: start; margin-bottom: 1rem;
   }
   @media (max-width: 680px) { .featured-card { grid-template-columns: 1fr; } }
   .featured-overline { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; }
-  .featured-tag { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500; padding: 0.2rem 0.6rem; border-radius: 4px; background: rgba(79,195,247,0.12); color: var(--accent-py); }
+  .featured-tag { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500; padding: 0.2rem 0.6rem; border-radius: 4px; background: rgba(74,222,128,0.12); color: var(--accent-py); }
   .featured-tag.flagship { background: rgba(255,213,79,0.1); color: var(--accent-gold); }
   .featured-card h2 { font-family: var(--font-mono); font-size: 1.4rem; font-weight: 500; color: var(--text); margin-bottom: 0.75rem; }
   .featured-card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.25rem; line-height: 1.6; }
@@ -319,9 +372,9 @@ const rest = packages.filter((p) => p.slug !== 'pyglotaran');
   .pkg-card.java::before { background: var(--accent-java); }
   .pkg-header { display: flex; align-items: center; justify-content: space-between; }
   .pkg-lang { font-family: var(--font-mono); font-size: 0.7rem; padding: 0.2rem 0.55rem; border-radius: 4px; font-weight: 500; }
-  .pkg-lang.py  { background: rgba(79,195,247,0.12); color: var(--accent-py); }
-  .pkg-lang.r   { background: rgba(239,154,154,0.12); color: var(--accent-r); }
-  .pkg-lang.java { background: rgba(165,214,167,0.12); color: var(--accent-java); }
+  .pkg-lang.py  { background: rgba(74,222,128,0.12); color: var(--accent-py); }
+  .pkg-lang.r   { background: rgba(117,170,219,0.12); color: var(--accent-r); }
+  .pkg-lang.java { background: rgba(248,152,32,0.12); color: var(--accent-java); }
   .pkg-lang.archived { background: rgba(255,255,255,0.05); color: var(--text-dim); }
   .pkg-name { font-family: var(--font-mono); font-size: 0.95rem; font-weight: 500; color: var(--text); }
   .pkg-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; flex: 1; }
@@ -353,6 +406,8 @@ const rest = packages.filter((p) => p.slug !== 'pyglotaran');
   footer { border-top: 1px solid var(--border); padding: 3rem 2.5rem; max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: start; }
   .footer-logo { font-family: var(--font-display); font-size: 1.1rem; font-weight: 300; color: var(--text-muted); margin-bottom: 0.5rem; }
   .footer-copy { font-size: 0.78rem; color: var(--text-dim); }
+  .footer-copy .nm { cursor: default; transition: color 0.3s, text-shadow 0.3s; }
+  .footer-copy .nm:hover { color: var(--accent-py); text-shadow: 0 0 6px rgba(74,222,128,0.6); }
   .footer-links { display: flex; flex-direction: column; gap: 0.4rem; text-align: right; }
   .footer-links a { font-size: 0.8rem; color: var(--text-dim); text-decoration: none; transition: color 0.15s; }
   .footer-links a:hover { color: var(--text-muted); }

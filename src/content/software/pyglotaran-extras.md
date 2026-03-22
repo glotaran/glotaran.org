@@ -3,7 +3,7 @@ name: pyglotaran-extras
 lang: python
 status: active
 order: 2
-summary: Extended plotting utilities and publication-ready overview figures for pyglotaran results.
+summary: Visualization companion for pyglotaran — publication-ready overview plots and diagnostic figures.
 pypi: https://pypi.org/project/pyglotaran-extras/
 github: https://github.com/glotaran/pyglotaran-extras
 docs: https://pyglotaran-extras.readthedocs.io
