@@ -10,8 +10,8 @@ packages:
   - timp
 ---
 
-The original publication describing the Glotaran software (now
-glotaran-legacy). It covers the architecture of the Java/NetBeans application,
+The original publication describing the Glotaran software (now glotaran-legacy). 
+It covers the architecture of the Java/NetBeans application,
 the interface to TIMP, and the workflow for global and target analysis of
 transient absorption and fluorescence datasets.
 

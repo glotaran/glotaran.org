@@ -58,7 +58,11 @@ parameters across experiments where appropriate and fitting others per dataset.
 
 ### Constraints and parameter relations
 
-- Positivity and zero constraints on selected parameters
+- Optional non-negative (or non-positive) least-squares estimation of
+  conditionally linear parameters — the work on TIMP led to the standalone
+  [`nnls`](https://cran.r-project.org/web/packages/nnls/) CRAN package, an R
+  interface to the Lawson–Hanson NNLS algorithm
+- Positivity and zero constraints on selected nonlinear parameters
 - Linked parameters across spectral regions or datasets
 - Shared and dataset-specific parameter partitioning
 
