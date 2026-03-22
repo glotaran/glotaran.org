@@ -82,7 +82,7 @@ for caveats before committing to a production workflow.
 
 If you use pyglotaran in a publication, please cite the 2023 paper:
 
-> Snellenburg JJ et al. (2023). pyglotaran: a lego-like Python framework for
-> global and target analysis of time-resolved spectra.
-> *Photochemical & Photobiological Sciences.*
+> van Stokkum IHM, Weißenborn J, Weigand S, Snellenburg JJ (2023). pyglotaran:
+> a lego-like Python framework for global and target analysis of time-resolved
+> spectra. *Photochemical & Photobiological Sciences*, 22(10), 2413–2431.
 > DOI: [10.1007/s43630-023-00460-y](https://doi.org/10.1007/s43630-023-00460-y)

@@ -7,25 +7,27 @@ interface Props {
   ctaLabel?: string;
 }
 
+const base = import.meta.env.BASE_URL;
+
 const {
   active,
   isHome = false,
-  communityHref = '/#community',
+  communityHref = `${base}#community`,
   ctaHref = 'https://pyglotaran.readthedocs.io',
   ctaLabel = 'Documentation ↗',
 } = Astro.props;
 
 const navItems = [
-  { href: '/software/timp', label: 'TIMP', key: 'timp' },
-  { href: '/software/glotaran-legacy', label: 'Glotaran 1.x', key: 'legacy' },
-  { href: '/software/pyglotaran', label: 'pyglotaran', key: 'pyglotaran', emphasis: true },
-  { href: '/publications', label: 'Publications', key: 'publications' },
+  { href: `${base}software/timp`, label: 'TIMP', key: 'timp' },
+  { href: `${base}software/glotaran-legacy`, label: 'Glotaran 1.x', key: 'legacy' },
+  { href: `${base}software/pyglotaran`, label: 'pyglotaran', key: 'pyglotaran', emphasis: true },
+  { href: `${base}publications`, label: 'Publications', key: 'publications' },
   { href: communityHref, label: 'Community', key: 'community' },
 ] as const;
 ---
 
 <nav>
-  <a href="/" class={`nav-logo ${isHome ? '' : 'collapsed'}`} id="sitenav-logo" data-home={isHome ? 'true' : 'false'}>
+  <a href={base} class={`nav-logo ${isHome ? '' : 'collapsed'}`} id="sitenav-logo" data-home={isHome ? 'true' : 'false'}>
     <span class="logo-stack">
       <span class="logo-word">
         <span class="lr">Glo</span><span class="lx">bal </span><span class="lr">Tar</span><span class="lx">get </span><span class="lr">An</span><span class="lx">alysis</span>

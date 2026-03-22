@@ -24,6 +24,7 @@ const statusLabel: Record<string, string> = {
   active: 'Active',
   stable: 'Stable',
   archived: 'Archived',
+  wip: 'Work in Progress',
 };
 
 const activeNav = pkg.slug === 'glotaran-legacy'
@@ -117,6 +118,7 @@ const activeNav = pkg.slug === 'glotaran-legacy'
   .status-badge { font-family: var(--font-mono); font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 4px; }
   .status-badge.archived { background: rgba(255,255,255,0.05); color: var(--text-dim); }
   .status-badge.stable   { background: rgba(165,214,167,0.08); color: #a5d6a7; }
+  .status-badge.wip      { background: rgba(255,214,0,0.08); color: #ffd54f; }
 
   h1 { font-family: var(--font-mono); font-size: 2rem; font-weight: 500; color: var(--text); margin-bottom: 0.75rem; }
   .pkg-summary { font-size: 1.05rem; color: var(--text-muted); max-width: 600px; line-height: 1.6; margin-bottom: 2rem; }

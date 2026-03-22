@@ -12,6 +12,7 @@ const publications = (await getCollection('publications'))
 const langLabel: Record<string, string> = { python: 'Python', r: 'R', java: 'Java' };
 const flagship = packages.find((p) => p.slug === 'pyglotaran')!;
 const rest = packages.filter((p) => p.slug !== 'pyglotaran');
+const base = import.meta.env.BASE_URL;
 ---
 
 <Base>
@@ -31,8 +32,8 @@ const rest = packages.filter((p) => p.slug !== 'pyglotaran');
       photovoltaics to photochemistry and beyond.
     </p>
     <div class="hero-actions">
-      <a href="/software/pyglotaran" class="btn-primary">Get started with pyglotaran</a>
-      <a href="/ecosystem" class="btn-ghost">Explore the ecosystem</a>
+      <a href={`${base}software/pyglotaran`} class="btn-primary">Get started with pyglotaran</a>
+      <a href={`${base}ecosystem`} class="btn-ghost">Explore the ecosystem</a>
     </div>
     <div class="install-block">
       <span class="prefix">$</span>
@@ -131,7 +132,7 @@ const rest = packages.filter((p) => p.slug !== 'pyglotaran');
     <!-- Package grid — driven by src/content/packages/ -->
     <div class="ecosystem-grid">
       {rest.map((pkg) => (
-        <a href={`/software/${pkg.slug}`} class={`pkg-card ${pkg.data.lang}`}>
+        <a href={`${base}software/${pkg.slug}`} class={`pkg-card ${pkg.data.lang}`}>
           <div class="pkg-header">
             <span class="pkg-name">{pkg.data.name}</span>
             <span class="pkg-arrow">↗</span>
@@ -152,7 +153,7 @@ const rest = packages.filter((p) => p.slug !== 'pyglotaran');
 
   <!-- Publications -->
   <section id="publications">
-    <p class="pull-quote"><em>From raw spectra to kinetic models you can defend.</em></p>
+    <p class="pull-quote"><em>From raw spectra to kinetic models you can interpret.</em></p>
     <div class="section-label">Literature</div>
     <div class="section-title"><em>Cite</em> the work</div>
 

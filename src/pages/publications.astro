@@ -5,6 +5,7 @@ import SiteNav from '../components/SiteNav.astro';
 
 const publications = (await getCollection('publications'))
   .sort((a, b) => b.data.year - a.data.year);
+const base = import.meta.env.BASE_URL;
 ---
 
 <Base title="Publications — GloTarAn" description="Papers describing the GloTarAn ecosystem tools.">
@@ -37,7 +38,7 @@ const publications = (await getCollection('publications'))
                 {pub.data.packages.length > 0 && (
                   <div class="pub-packages">
                     {pub.data.packages.map((slug) => (
-                      <a href={`/software/${slug}`} class="pkg-tag">{slug}</a>
+                      <a href={`${base}software/${slug}`} class="pkg-tag">{slug}</a>
                     ))}
                   </div>
                 )}
@@ -47,7 +48,7 @@ const publications = (await getCollection('publications'))
                   <a href={`https://doi.org/${pub.data.doi}`} class="pub-btn" target="_blank" rel="noopener">DOI ↗</a>
                 )}
                 {pub.data.bib && (
-                  <a href={`/bib/${pub.data.bib}`} class="pub-btn" download>BibTeX</a>
+                  <a href={`${base}bib/${pub.data.bib}`} class="pub-btn" download>BibTeX</a>
                 )}
               </div>
             </div>

@@ -5,7 +5,7 @@ const software = defineCollection({
   schema: z.object({
     name: z.string(),
     lang: z.enum(['python', 'r', 'java']),
-    status: z.enum(['active', 'stable', 'archived']).default('active'),
+    status: z.enum(['active', 'stable', 'archived', 'wip']).default('active'),
     summary: z.string(),       // one-liner for cards
     version: z.string().optional(),
     pypi: z.string().url().optional(),
