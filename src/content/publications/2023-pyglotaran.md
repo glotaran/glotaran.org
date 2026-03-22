@@ -1,6 +1,6 @@
 ---
 title: "pyglotaran: a lego-like Python framework for global and target analysis of time-resolved spectra"
-authors: "Snellenburg JJ, Weigand S, Privoznik J, Mullen KM, van Stokkum IHM"
+authors: "van Stokkum IHM, Weißenborn J, Weigand S, Snellenburg JJ"
 journal: "Photochemical & Photobiological Sciences"
 year: 2023
 doi: "10.1007/s43630-023-00460-y"
