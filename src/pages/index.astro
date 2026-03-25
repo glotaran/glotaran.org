@@ -1,7 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import CodeExampleTabs from '../components/CodeExampleTabs.astro';
 import SiteNav from '../components/SiteNav.astro';
+import { pyglotaranExampleTabs } from '../data/pyglotaranExample';
 
 const packages = (await getCollection('software'))
   .sort((a, b) => a.data.order - b.data.order);
@@ -92,8 +94,8 @@ const base = import.meta.env.BASE_URL;
     <div class="section-title">The <em>ecosystem</em></div>
 
     <!-- Featured: pyglotaran -->
-    <div class="featured-card">
-      <div>
+    <div class="featured-card" data-card-link={`${base}software/${flagship.slug}`}>
+      <div class="featured-panel" data-card-nav-surface>
         <div class="featured-overline">
           <span class="featured-tag flagship">Flagship</span>
           <span class="featured-tag">Python</span>
@@ -111,21 +113,15 @@ const base = import.meta.env.BASE_URL;
           <li>Jupyter-native, built on NumPy and xarray</li>
           <li>Cross-validated against two decades of TIMP results</li>
         </ul>
+        <a href={`${base}software/${flagship.slug}`} class="featured-link">Open pyglotaran ↗</a>
       </div>
-      <div class="code-block">
-        <span class="tok-comment"># minimal target analysis</span><br />
-        <span class="tok-keyword">import</span> <span class="tok-import">pyglotaran</span> <span class="tok-keyword">as</span> <span class="tok-var">pg</span><br />
-        <br />
-        <span class="tok-var">model</span>  = <span class="tok-fn">pg.read_model_from_yaml</span>(<span class="tok-string">"model.yaml"</span>)<br />
-        <span class="tok-var">data</span>   = <span class="tok-fn">pg.load_dataset</span>(<span class="tok-string">"measurement.sdt"</span>)<br />
-        <br />
-        <span class="tok-var">scheme</span> = <span class="tok-fn">pg.Scheme</span>(<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;model=<span class="tok-var">model</span>,<br />
-        &nbsp;&nbsp;&nbsp;&nbsp;data=&#123;<span class="tok-string">"data_1"</span>: <span class="tok-var">data</span>&#125;,<br />
-        )<br />
-        <br />
-        <span class="tok-var">result</span> = <span class="tok-fn">pg.optimize</span>(<span class="tok-var">scheme</span>)<br />
-        <span class="tok-var">result</span>.<span class="tok-fn">save</span>(<span class="tok-string">"result/"</span>)
+      <div class="featured-panel featured-example">
+        <CodeExampleTabs
+          id="pyglotaran-home-example"
+          tabs={pyglotaranExampleTabs}
+          compact={true}
+          ariaLabel="pyglotaran example tabs"
+        />
       </div>
     </div>
 
@@ -342,8 +338,12 @@ const base = import.meta.env.BASE_URL;
     border-radius: 10px; padding: 2.5rem;
     display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem;
     align-items: start; margin-bottom: 1rem;
+    transition: border-color 0.2s, transform 0.15s;
   }
+  .featured-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+  .featured-card:focus-within { outline: 2px solid var(--accent-py); outline-offset: 3px; }
   @media (max-width: 680px) { .featured-card { grid-template-columns: 1fr; } }
+  .featured-panel { min-width: 0; }
   .featured-overline { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; }
   .featured-tag { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500; padding: 0.2rem 0.6rem; border-radius: 4px; background: rgba(74,222,128,0.12); color: var(--accent-py); }
   .featured-tag.flagship { background: rgba(255,213,79,0.1); color: var(--accent-gold); }
@@ -352,16 +352,25 @@ const base = import.meta.env.BASE_URL;
   .feature-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
   .feature-list li { font-size: 0.85rem; color: var(--text-muted); padding-left: 1.1rem; position: relative; }
   .feature-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent-py); font-size: 0.8rem; }
+  .featured-link {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    margin-top: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.45rem 0.85rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-decoration: none;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+  }
+  .featured-link:hover { color: var(--text); border-color: var(--border-hover); background: rgba(255,255,255,0.03); }
+  .featured-link:focus-visible { outline: 2px solid var(--accent-py); outline-offset: 2px; }
+  .featured-example { min-width: 0; }
 
   /* ─── CODE BLOCK ─── */
-  .code-block { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem 1.5rem; font-family: var(--font-mono); font-size: 0.78rem; line-height: 2; overflow-x: auto; }
-  .tok-comment { color: var(--text-dim); }
-  .tok-keyword { color: #c792ea; }
-  .tok-import  { color: var(--accent-py); }
-  .tok-string  { color: #c3e88d; }
-  .tok-fn      { color: #82aaff; }
-  .tok-var     { color: var(--text); }
-
   /* ─── ECOSYSTEM GRID ─── */
   .ecosystem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
   .pkg-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; text-decoration: none; display: flex; flex-direction: column; gap: 0.75rem; transition: border-color 0.2s, transform 0.15s; position: relative; overflow: hidden; }
@@ -413,3 +422,34 @@ const base = import.meta.env.BASE_URL;
   .footer-links a { font-size: 0.8rem; color: var(--text-dim); text-decoration: none; transition: color 0.15s; }
   .footer-links a:hover { color: var(--text-muted); }
 </style>
+
+<script>
+  document.querySelectorAll('[data-card-link]').forEach((card) => {
+    if (card.hasAttribute('data-card-link-ready')) {
+      return;
+    }
+
+    card.setAttribute('data-card-link-ready', 'true');
+
+    card.addEventListener('click', (event) => {
+      const target = event.target;
+      const selection = window.getSelection();
+
+      if (!(target instanceof HTMLElement) || selection?.toString()) {
+        return;
+      }
+
+      if (target.closest('a, button, [role="tab"], [role="tabpanel"], pre, code')) {
+        return;
+      }
+
+      if (target === card || target.closest('[data-card-nav-surface]')) {
+        const href = card.getAttribute('data-card-link');
+
+        if (href) {
+          window.location.href = href;
+        }
+      }
+    });
+  });
+</script>

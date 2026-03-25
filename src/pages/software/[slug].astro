@@ -1,7 +1,9 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import CodeExampleTabs from '../../components/CodeExampleTabs.astro';
 import SiteNav from '../../components/SiteNav.astro';
+import { pyglotaranExampleTabs } from '../../data/pyglotaranExample';
 
 export async function getStaticPaths() {
   const packages = await getCollection('software');
@@ -84,6 +86,18 @@ const activeNav = pkg.slug === 'glotaran-legacy'
       <div class="prose">
         <Content />
       </div>
+
+      {pkg.slug === 'pyglotaran' && (
+        <div id="pyglotaran-quickstart-source" hidden aria-hidden="true">
+          <CodeExampleTabs
+            id="pyglotaran-detail-example"
+            tabs={pyglotaranExampleTabs}
+            ariaLabel="pyglotaran quickstart example tabs"
+            bundleHref="examples/my_project.zip"
+            showDownloads={true}
+          />
+        </div>
+      )}
     </div>
   </main>
 
@@ -174,3 +188,20 @@ const activeNav = pkg.slug === 'glotaran-legacy'
     footer { padding: 1.5rem 1.25rem; }
   }
 </style>
+
+{pkg.slug === 'pyglotaran' && (
+  <script>
+    const quickstartSlot = document.getElementById('pyglotaran-quickstart-slot');
+    const quickstartSource = document.getElementById('pyglotaran-quickstart-source');
+
+    if (quickstartSlot && quickstartSource) {
+      const example = quickstartSource.firstElementChild;
+
+      if (example) {
+        quickstartSlot.replaceChildren(example);
+      }
+
+      quickstartSource.remove();
+    }
+  </script>
+)}

@@ -36,41 +36,26 @@ flexible kinetic model library built around the scientific Python stack.
 ## Installation
 
 ```sh
-pip install pyglotaran
-```
-
-Or with the extended plotting utilities:
-
-```sh
 pip install pyglotaran pyglotaran-extras
 ```
 
 Conda-forge package is also available:
 
 ```sh
-conda install -c conda-forge pyglotaran
+conda install -c conda-forge pyglotaran pyglotaran-extras
 ```
 
 ## Quickstart
 
-```python
-import pyglotaran as pg
+pyglotaran uses a project-based workflow: open a project, import a dataset,
+validate the model and parameter files, and then run the optimization.
 
-model  = pg.read_model_from_yaml("model.yaml")
-data   = pg.load_dataset("measurement.sdt")
+<!-- markdownlint-disable-next-line MD033 -->
+<div id="pyglotaran-quickstart-slot"></div>
 
-scheme = pg.Scheme(
-    model=model,
-    data={"dataset_1": data},
-)
+Place the YAML files in `my_project/models/` and `my_project/parameters/`.
 
-result = pg.optimize(scheme)
-result.save("result/")
-```
-
-See the [getting started guide](https://pyglotaran.readthedocs.io/en/latest/notebooks/getting_started/getting_started.html)
-and the [pyglotaran-examples](https://github.com/glotaran/pyglotaran-examples)
-repository for real-world case studies.
+See the [getting started guide](https://pyglotaran.readthedocs.io/en/latest/notebooks/getting_started/getting_started.html) for more details, and the [pyglotaran-examples](https://github.com/glotaran/pyglotaran-examples) repository for real-world case studies.
 
 ## Status
 
