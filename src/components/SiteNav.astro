@@ -56,9 +56,10 @@ const navItems = [
 
 <style>
   nav {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     align-items: center;
-    justify-content: space-between;
+    column-gap: 1.5rem;
     padding: 1.25rem 2.5rem;
     border-bottom: 1px solid var(--border);
     position: sticky;
@@ -74,6 +75,7 @@ const navItems = [
     gap: 0;
     text-decoration: none;
     flex-shrink: 0;
+    justify-self: start;
     cursor: default;
   }
 
@@ -187,6 +189,7 @@ const navItems = [
     list-style: none;
     margin: 0;
     padding: 0;
+    justify-self: center;
   }
 
   .nav-links a {
@@ -219,6 +222,7 @@ const navItems = [
     transition: border-color 0.15s, background 0.15s;
     text-decoration: none;
     flex-shrink: 0;
+    justify-self: end;
   }
 
   .nav-cta:hover {
