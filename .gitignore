@@ -19,5 +19,9 @@ Thumbs.db
 # Release archives
 *.tar.gz
 
+# Generated example downloads
+public/examples/my_project/
+public/examples/my_project.zip
+
 # Ignore the temp folders with reference material for the redesign (old site, etc)
 tmp.*/

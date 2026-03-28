@@ -1,6 +1,6 @@
 ---
 interface Props {
-  active?: 'legacy' | 'pyglotaran' | 'timp' | 'publications';
+  active?: 'legacy' | 'pyglotaran' | 'timp' | 'publications' | 'ecosystem' | 'community';
   isHome?: boolean;
   communityHref?: string;
   ctaHref?: string;
@@ -22,6 +22,7 @@ const navItems = [
   { href: `${base}software/glotaran-legacy`, label: 'Glotaran 1.x', key: 'legacy' },
   { href: `${base}software/pyglotaran`, label: 'pyglotaran', key: 'pyglotaran', emphasis: true },
   { href: `${base}publications`, label: 'Publications', key: 'publications' },
+  { href: `${base}ecosystem`, label: 'Ecosystem', key: 'ecosystem' },
   { href: communityHref, label: 'Community', key: 'community' },
 ] as const;
 ---

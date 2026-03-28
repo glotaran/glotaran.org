@@ -12,6 +12,8 @@ badges:
   - education
 ---
 
+# About paramGUI
+
 paramGUI is an R package that provides an interactive browser-based interface
 for teaching parameter estimation in the context of global and target analysis.
 Built with the [Shiny](https://shiny.posit.co/) web-app framework and using

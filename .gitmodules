@@ -1,0 +1,3 @@
+[submodule "external/.github"]
+	path = external/.github
+	url = https://github.com/glotaran/.github.git

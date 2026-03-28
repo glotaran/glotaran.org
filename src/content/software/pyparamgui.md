@@ -11,6 +11,8 @@ badges:
   - Jupyter
 ---
 
+# About pyparamgui
+
 PyParamGUI is a first attempt to bring the interactive teaching experience of
 the R-based [paramGUI](/software/paramgui) package into the Python ecosystem.
 It uses [pyglotaran](/software/pyglotaran) as its backend and provides Jupyter

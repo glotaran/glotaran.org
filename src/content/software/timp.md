@@ -12,6 +12,8 @@ badges:
   - FLIM
 ---
 
+# About TIMP
+
 TIMP implements partitioned variable projection for separable nonlinear
 least-squares problems. By splitting conditionally linear parameters from
 intrinsically nonlinear ones it reduces the effective search space and, more
@@ -140,5 +142,5 @@ If you use TIMP, please cite:
 
 > Mullen KM, van Stokkum IHM (2007). TIMP: An R package for modeling
 > multi-way spectroscopic measurements.
-> *Journal of Statistical Software* 18(3).
+> *Journal of Statistical Software* 18(3). </br>
 > DOI: [10.18637/jss.v018.i03](https://doi.org/10.18637/jss.v018.i03)

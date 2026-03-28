@@ -13,6 +13,8 @@ badges:
   - v1.5.1
 ---
 
+# About glotaran-legacy (Glotaran 1.x)
+
 The original — and still the most-cited — tool for global and target
 analysis of time-resolved spectroscopy data. With over 1,500 citations
 since its [2012 JSS publication](/publications), Glotaran brought rigorous

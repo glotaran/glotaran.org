@@ -133,9 +133,10 @@ const base = import.meta.env.BASE_URL;
             <span class="pkg-name">{pkg.data.name}</span>
             <span class="pkg-arrow">↗</span>
           </div>
-          <span class={`pkg-lang ${pkg.data.status === 'archived' ? 'archived' : pkg.data.lang}`}>
-            {langLabel[pkg.data.lang]}{pkg.data.status === 'archived' ? ' · Archived' : ''}
-          </span>
+          <div class="pkg-badges">
+            <span class={`pkg-lang ${pkg.data.lang}`}>{langLabel[pkg.data.lang]}</span>
+            {pkg.data.status === 'archived' && <span class="pkg-status archived">Archived</span>}
+          </div>
           <p class="pkg-desc">{pkg.data.summary}</p>
           <div class="pkg-meta">
             {pkg.data.badges.map((b) => <span class="pkg-badge">{b}</span>)}
@@ -218,7 +219,7 @@ const base = import.meta.env.BASE_URL;
       <div class="footer-logo">GloTarAn</div>
       <div class="footer-copy">
         From photons to insight.<br />
-        <span class="nm" title="&quot;What… is your favourite wavelength?&quot;&#10;&quot;532 nm!&quot;&#10;&quot;Right. Off you go.&quot;">
+        <span class="nm" title="&quot;What… is your favourite color?&quot;&#10;&quot;532 nm!&quot;&#10;&quot;Right. Off you go.&quot;">
           © Joris Snellenburg &amp; contributors · VU Amsterdam
         </span> 
       </div>
@@ -377,15 +378,17 @@ const base = import.meta.env.BASE_URL;
   .pkg-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; opacity: 0; transition: opacity 0.2s; }
   .pkg-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
   .pkg-card:hover::before { opacity: 1; }
-  .pkg-card.py::before  { background: var(--accent-py); }
-  .pkg-card.r::before   { background: var(--accent-r); }
-  .pkg-card.java::before { background: var(--accent-java); }
+  .pkg-card.python::before { background: var(--accent-py); }
+  .pkg-card.r::before      { background: #4fc3f7; }
+  .pkg-card.java::before   { background: var(--accent-java); }
   .pkg-header { display: flex; align-items: center; justify-content: space-between; }
+  .pkg-badges { display: flex; gap: 0.4rem; flex-wrap: wrap; align-items: center; }
   .pkg-lang { font-family: var(--font-mono); font-size: 0.7rem; padding: 0.2rem 0.55rem; border-radius: 4px; font-weight: 500; }
-  .pkg-lang.py  { background: rgba(74,222,128,0.12); color: var(--accent-py); }
-  .pkg-lang.r   { background: rgba(117,170,219,0.12); color: var(--accent-r); }
-  .pkg-lang.java { background: rgba(248,152,32,0.12); color: var(--accent-java); }
-  .pkg-lang.archived { background: rgba(255,255,255,0.05); color: var(--text-dim); }
+  .pkg-lang.python { background: rgba(74,222,128,0.12); color: var(--accent-py); }
+  .pkg-lang.r      { background: rgba(79,195,247,0.15); color: #4fc3f7; font-weight: 600; }
+  .pkg-lang.java   { background: rgba(248,152,32,0.12); color: var(--accent-java); }
+  .pkg-status { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500; padding: 0.2rem 0.55rem; border-radius: 4px; }
+  .pkg-status.archived { background: rgba(255,255,255,0.05); color: var(--text-dim); }
   .pkg-name { font-family: var(--font-mono); font-size: 0.95rem; font-weight: 500; color: var(--text); }
   .pkg-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; flex: 1; }
   .pkg-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; }

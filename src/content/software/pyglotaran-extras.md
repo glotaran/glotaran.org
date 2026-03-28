@@ -12,6 +12,8 @@ badges:
   - xarray
 ---
 
+# About pyglotaran-extras
+
 pyglotaran-extras provides plotting functions that go beyond pyglotaran's
 built-in result visualization. Its `plot_overview` function produces
 multi-panel figures suitable for direct use in publications.
