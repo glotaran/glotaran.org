@@ -1,0 +1,57 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    target-branch: "dependabot/combined"
+    schedule:
+      interval: weekly
+      day: friday
+      time: "18:00"
+      timezone: Europe/Amsterdam
+    open-pull-requests-limit: 20
+    reviewers:
+      - jsnel
+      - s-weigand
+    assignees:
+      - jsnel
+      - s-weigand
+    groups:
+      node-dependencies:
+        patterns:
+          - "*"
+        update-types:
+          - minor
+          - patch
+    rebase-strategy: disabled
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    target-branch: "dependabot/combined"
+    schedule:
+      interval: weekly
+      day: friday
+      time: "18:00"
+      timezone: Europe/Amsterdam
+    reviewers:
+      - jsnel
+      - s-weigand
+    assignees:
+      - jsnel
+      - s-weigand
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+        update-types:
+          - minor
+          - patch
+    rebase-strategy: disabled
+
+  - package-ecosystem: gitsubmodule
+    directory: "/"
+    target-branch: "dependabot/combined"
+    schedule:
+      interval: weekly
+      day: friday
+      time: "18:00"
+      timezone: Europe/Amsterdam
