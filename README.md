@@ -41,7 +41,8 @@ For routine production deploys on the external web server, use
 [scripts/deploy-release.sh](scripts/deploy-release.sh). It resolves `latest` or
 a specific tag from the public GitHub release URLs, downloads the matching
 tarball and `.sha256` checksum, verifies integrity, and syncs the extracted
-site into the server web root.
+site into the server web root. Existing files with the same paths are
+overwritten, but files already present in the target directory are not deleted.
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/glotaran/glotaran.org/main/scripts/deploy-release.sh -o deploy-release.sh
