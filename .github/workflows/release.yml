@@ -1,23 +1,30 @@
-name: Release tarball
+name: Release and publish
 
-# Trigger: publish a GitHub Release (create tag + release in the UI),
-# or run manually to cut a tarball from any ref.
 on:
   release:
     types: [published]
-  workflow_dispatch:
-    inputs:
-      tag:
-        description: Tag name to embed in the archive filename (e.g. v1.0.0)
-        required: false
-        default: manual
+
+concurrency:
+  group: release-${{ github.event.release.tag_name }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
 
 jobs:
-  build-tarball:
-    name: Build & attach tarball
+  release:
+    name: Build artifacts and publish Pages branch
     runs-on: ubuntu-latest
+    env:
+      PAGES_BRANCH: pages
+      RELEASE_TAG: ${{ github.event.release.tag_name }}
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout release tag
+        uses: actions/checkout@v4
+        with:
+          ref: refs/tags/${{ github.event.release.tag_name }}
+          fetch-depth: 0
+          submodules: recursive
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -28,41 +35,73 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build site
-        run: npm run build
-
-      # Determine the version string: from the release tag, or the manual input.
-      - name: Resolve version
-        id: version
+      - name: Build glotaran.org release
+        env:
+          SITE_URL: https://glotaran.org
         run: |
-          if [ "${{ github.event_name }}" = "release" ]; then
-            echo "tag=${{ github.event.release.tag_name }}" >> "$GITHUB_OUTPUT"
-          else
-            echo "tag=${{ inputs.tag }}" >> "$GITHUB_OUTPUT"
-          fi
+          npm run build
+          mv dist prod-dist
 
-      - name: Create tarball
+      - name: Create release archive
         run: |
-          TAG="${{ steps.version.outputs.tag }}"
-          ARCHIVE="glotaran-org-${TAG}.tar.gz"
-          # dist/ contains everything needed; strip the leading "dist/" prefix
-          # so the server can extract directly into the document root.
-          tar -czf "$ARCHIVE" -C dist .
+          ARCHIVE="glotaran-org-${RELEASE_TAG}.tar.gz"
+          tar -czf "$ARCHIVE" -C prod-dist .
+          sha256sum "$ARCHIVE" > "$ARCHIVE.sha256"
           echo "ARCHIVE=${ARCHIVE}" >> "$GITHUB_ENV"
 
-      # Attach the tarball to the GitHub Release as a downloadable asset.
-      # On workflow_dispatch (no release object) this step uploads to the
-      # workflow run artifacts instead.
-      - name: Upload to GitHub Release
-        if: github.event_name == 'release'
+      - name: Build glotaran.github.io site
+        env:
+          SITE_URL: https://glotaran.github.io
+        run: |
+          npm run build
+          mv dist pages-dist
+          rm -f pages-dist/CNAME
+
+      - name: Assemble Pages publish tree
+        run: |
+          mkdir publish
+          cp -a pages-dist/. publish/
+          cp -a external/glotaran.github.io/legacy publish/legacy
+          cp -a external/glotaran.github.io/_layouts publish/_layouts
+          cp external/glotaran.github.io/_config.yml publish/_config.yml
+
+      - name: Create GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: glotaran
+          repositories: |
+            glotaran.github.io
+          permission-contents: write
+
+      - name: Resolve GitHub App bot user
+        id: app-bot
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          APP_SLUG: ${{ steps.app-token.outputs.app-slug }}
+        run: |
+          echo "user-id=$(gh api "/users/${APP_SLUG}[bot]" --jq .id)" >> "$GITHUB_OUTPUT"
+
+      - name: Publish glotaran.github.io Pages branch
+        env:
+          APP_SLUG: ${{ steps.app-token.outputs.app-slug }}
+          APP_TOKEN: ${{ steps.app-token.outputs.token }}
+          APP_BOT_USER_ID: ${{ steps.app-bot.outputs.user-id }}
+        run: |
+          cd publish
+          git init --initial-branch="$PAGES_BRANCH"
+          git config user.name "${APP_SLUG}[bot]"
+          git config user.email "${APP_BOT_USER_ID}+${APP_SLUG}[bot]@users.noreply.github.com"
+          git add --all
+          git commit --allow-empty -m "Publish ${RELEASE_TAG}"
+          git remote add origin "https://x-access-token:${APP_TOKEN}@github.com/glotaran/glotaran.github.io.git"
+          git push --force origin "HEAD:${PAGES_BRANCH}"
+
+      - name: Upload release assets
         uses: softprops/action-gh-release@v2
         with:
-          files: ${{ env.ARCHIVE }}
-
-      - name: Upload as workflow artifact (manual run)
-        if: github.event_name == 'workflow_dispatch'
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ env.ARCHIVE }}
-          path: ${{ env.ARCHIVE }}
-          retention-days: 14
+          files: |
+            ${{ env.ARCHIVE }}
+            ${{ env.ARCHIVE }}.sha256
