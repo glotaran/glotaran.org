@@ -42,11 +42,11 @@ Rules:
 ## Page-Level Conventions
 
 - The spectrum gradient bar is currently repeated in page files. Reuse the existing pattern unless the task specifically justifies extracting it.
-- Package pages are driven by [src/pages/packages/[slug].astro](../../src/pages/packages/%5Bslug%5D.astro).
-- Markdown prose on package pages relies on the shared `.prose` styles in that template.
+- Software pages are driven by [src/pages/software/[slug].astro](../../src/pages/software/%5Bslug%5D.astro).
+- Markdown prose on software pages relies on the shared `.prose` styles in that template.
 
 ## Validation Checklist
 
 - `npm run build`
 - Browser-check any changed layout at wide and narrow widths
-- If you touched navigation, verify homepage plus at least one package page
+- If you touched navigation, verify homepage plus at least one software page

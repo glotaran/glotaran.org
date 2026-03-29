@@ -30,11 +30,29 @@ flavors from that tag:
   `external/glotaran.github.io`, and force-pushes the result to the `pages`
   branch of `glotaran/glotaran.github.io`.
 
-The production host still pulls the tarball onto `ssh.data.vu.nl`. Download and
-extract directly into the server document root:
+The production host still pulls the tarball onto an external web server.
+Download and extract directly into the server document root:
 
 ```sh
 tar -xzf glotaran-org-v1.0.0.tar.gz -C /var/www/glotaran.org/
+```
+
+For routine production deploys on the external web server, use
+[scripts/deploy-release.sh](scripts/deploy-release.sh). It resolves `latest` or
+a specific tag from the public GitHub release URLs, downloads the matching
+tarball and `.sha256` checksum, verifies integrity, and syncs the extracted
+site into the server web root.
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/glotaran/glotaran.org/main/scripts/deploy-release.sh -o deploy-release.sh
+chmod +x deploy-release.sh
+TARGET_DIR=/var/www/glotaran.org ./deploy-release.sh latest
+```
+
+To deploy a specific tag instead of the latest published release:
+
+```sh
+TARGET_DIR=/var/www/glotaran.org ./deploy-release.sh v1.0.0
 ```
 
 For the GitHub Pages side, configure `glotaran/glotaran.github.io` to publish
@@ -53,6 +71,8 @@ public/
   CNAME                   Production custom domain (removed from github.io build)
 .github/workflows/
   release.yml             Release tag → tarball asset + pages branch publish
+scripts/
+  deploy-release.sh       Server-side helper for external web server deploys
 external/
   glotaran.github.io/     Legacy Pages source overlaid into /legacy/
 astro.config.mjs

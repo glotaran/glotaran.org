@@ -94,7 +94,13 @@ const base = import.meta.env.BASE_URL;
     <div class="section-title">The <em>ecosystem</em></div>
 
     <!-- Featured: pyglotaran -->
-    <div class="featured-card" data-card-link={`${base}software/${flagship.slug}`}>
+    <div
+      class="featured-card"
+      data-card-link={`${base}software/${flagship.slug}`}
+      role="link"
+      tabindex="0"
+      aria-label="Open pyglotaran"
+    >
       <div class="featured-panel" data-card-nav-surface>
         <div class="featured-overline">
           <span class="featured-tag flagship">Flagship</span>
@@ -168,7 +174,7 @@ const base = import.meta.env.BASE_URL;
               <a href={`https://doi.org/${pub.data.doi}`} class="pub-link" target="_blank" rel="noopener">DOI ↗</a>
             )}
             {pub.data.bib && (
-              <a href={`/bib/${pub.data.bib}`} class="pub-link" download>BibTeX</a>
+              <a href={`${base}bib/${pub.data.bib}`} class="pub-link" download>BibTeX</a>
             )}
           </div>
         </div>
@@ -203,7 +209,7 @@ const base = import.meta.env.BASE_URL;
         <div class="community-name">Mailing list</div>
         <div class="community-desc">Google Groups — longer discussions and announcements.</div>
       </a>
-      <a href="/publications" class="community-card">
+      <a href={`${base}publications`} class="community-card">
         <div class="community-icon">◈</div>
         <div class="community-name">Publications</div>
         <div class="community-desc">Papers using pyglotaran and TIMP submitted by the community.</div>
@@ -452,6 +458,24 @@ const base = import.meta.env.BASE_URL;
         if (href) {
           window.location.href = href;
         }
+      }
+    });
+
+    card.addEventListener('keydown', (event) => {
+      if (!(event.target instanceof HTMLElement) || event.target !== card) {
+        return;
+      }
+
+      if (event.key !== 'Enter' && event.key !== ' ') {
+        return;
+      }
+
+      event.preventDefault();
+
+      const href = card.getAttribute('data-card-link');
+
+      if (href) {
+        window.location.href = href;
       }
     });
   });

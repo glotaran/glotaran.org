@@ -1,24 +1,24 @@
 # Content And Routing
 
-Use this document when changing package content, publication content, or file-based routes.
+Use this document when changing software content, publication content, or file-based routes.
 
 ## Site Shape
 
 The site is a static Astro app with a small number of page types:
 
 - [src/pages/index.astro](../../src/pages/index.astro): homepage
-- [src/pages/ecosystem.astro](../../src/pages/ecosystem.astro): package overview
+- [src/pages/ecosystem.astro](../../src/pages/ecosystem.astro): software overview
 - [src/pages/publications.astro](../../src/pages/publications.astro): publication list
-- [src/pages/packages/[slug].astro](../../src/pages/packages/%5Bslug%5D.astro): dynamic package detail pages
-- [src/pages/packages/glotaran-legacy/resources.astro](../../src/pages/packages/glotaran-legacy/resources.astro): dedicated legacy subpage
+- [src/pages/software/[slug].astro](../../src/pages/software/%5Bslug%5D.astro): dynamic software detail pages
+- [src/pages/software/glotaran-legacy/resources.astro](../../src/pages/software/glotaran-legacy/resources.astro): dedicated legacy subpage
 
 ## Content Collections
 
 Schemas live in [src/content/config.ts](../../src/content/config.ts).
 
-### Packages
+### Software
 
-Files live in [src/content/packages](../../src/content/packages).
+Files live in [src/content/software](../../src/content/software).
 
 Required fields:
 
@@ -37,9 +37,9 @@ Common optional fields:
 
 Rules:
 
-- The filename becomes the slug. Example: `pyglotaran.md` becomes `/packages/pyglotaran`.
-- `order` controls package ordering on the ecosystem page and homepage package grid.
-- The markdown body is rendered below the package hero on the shared package template.
+- The filename becomes the slug. Example: `pyglotaran.md` becomes `/software/pyglotaran`.
+- `order` controls software ordering on the ecosystem page and homepage package grid.
+- The markdown body is rendered below the software hero on the shared software template.
 
 ### Publications
 
@@ -65,12 +65,12 @@ Rules:
 
 ## When Adding Or Changing Content
 
-### New package
+### New software entry
 
-1. Add a markdown file in [src/content/packages](../../src/content/packages).
+1. Add a markdown file in [src/content/software](../../src/content/software).
 2. Ensure frontmatter matches the schema.
 3. Set `order` intentionally so the package appears in the right place.
-4. If the package needs a special subpage, add a dedicated route under [src/pages/packages](../../src/pages/packages).
+4. If the software entry needs a special subpage, add a dedicated route under [src/pages/software](../../src/pages/software).
 
 ### New publication
 
