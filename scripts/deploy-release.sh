@@ -96,7 +96,6 @@ tar -xzf "$archive_path" -C "$staging_dir"
 mkdir -p "$TARGET_DIR"
 rsync_args=(
   -a
-  --delete
 )
 
 if [[ "${DRY_RUN:-0}" == "1" ]]; then
