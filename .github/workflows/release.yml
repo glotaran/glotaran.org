@@ -20,14 +20,14 @@ jobs:
       RELEASE_TAG: ${{ github.event.release.tag_name }}
     steps:
       - name: Checkout release tag
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: refs/tags/${{ github.event.release.tag_name }}
           fetch-depth: 0
           submodules: recursive
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 20
           cache: npm
@@ -63,7 +63,7 @@ jobs:
           cp -a pages-dist/. publish/
           cp -a external/glotaran.github.io/legacy publish/legacy
           cp -a external/glotaran.github.io/_layouts publish/_layouts
-          cp external/glotaran.github.io/_config.yml publish/_config.yml
+          printf '%s\n' 'theme: jekyll-theme-architect' 'include:' '  - _astro' > publish/_config.yml
 
       - name: Create GitHub App token
         id: app-token
