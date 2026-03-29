@@ -101,8 +101,8 @@ dataset:
 
 ```yaml
 input:
-  - ["1", 1, { "vary": False }]
-  - ["0", 0, { "vary": False }]
+  - ["1", 1, { "vary": false }]
+  - ["0", 0, { "vary": false }]
 
 kinetic: [0.51, 0.31, 0.11]
 
