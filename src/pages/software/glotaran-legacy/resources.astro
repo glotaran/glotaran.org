@@ -1,0 +1,166 @@
+---
+import Base from '../../../layouts/Base.astro';
+import SiteNav from '../../../components/SiteNav.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<Base title="Legacy Resources — Glotaran 1.x" description="Archived documentation and tutorial material for the original Glotaran 1.x Java desktop UI.">
+  <div class="spectrum-bar"></div>
+
+  <SiteNav active="legacy" ctaHref="https://glotaran.github.io/legacy/" ctaLabel="Legacy docs ↗" />
+
+  <main>
+    <section class="hero">
+      <div class="hero-meta">
+        <span class="eyebrow">Legacy Java UI</span>
+        <span class="status">Archived, still usable</span>
+      </div>
+      <h1>Legacy resources for Glotaran 1.x</h1>
+      <p class="hero-copy">
+        Curated documentation and tutorial material from the original
+        glotaran.org site for users who still work with the Java desktop
+        application. Use this page as an entry point, then follow the archived
+        documentation when you need the full reference.
+      </p>
+      <div class="hero-actions">
+        <a href="https://glotaran.github.io/legacy/" class="link-btn primary" target="_blank" rel="noopener">Open legacy documentation ↗</a>
+        <a href="https://www.youtube.com/watch?v=ZeVuBustiYQ" class="link-btn" target="_blank" rel="noopener">Watch screencast ↗</a>
+        <a href={`${base}software/glotaran-legacy`} class="link-btn">Back to Glotaran 1.x</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-label">Documentation</div>
+      <h2>Archived reference for the Java UI</h2>
+      <p>
+        The old website exposed its documentation through an iframe wrapper.
+        That wrapper is not worth preserving, but the documentation itself is.
+        The canonical archived reference is now the standalone site at
+        <a href="https://glotaran.github.io/legacy/" target="_blank" rel="noopener">glotaran.github.io/legacy</a>.
+      </p>
+      <p>
+        Use that reference when you need details about the legacy application’s
+        interface, workflow, and project structure. This new site keeps only a
+        short orientation layer so current legacy users can still find the old
+        material without having to navigate the original website shell.
+      </p>
+      <div class="callout">
+        <h3>What to expect from the legacy docs</h3>
+        <ul>
+          <li>Reference material for the archived Java desktop application.</li>
+          <li>Guidance that matches the legacy UI rather than the current Python tools.</li>
+          <li>A better destination than the old iframe-based “Documentation” page.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-label">Tutorial</div>
+      <h2>Original getting-started screencast</h2>
+      <p>
+        One of the most useful parts of the old site was the demonstration page,
+        which linked to a full walkthrough of a typical Glotaran analysis. That
+        video is still the fastest way to understand how the legacy desktop GUI
+        fits together from project creation through result inspection.
+      </p>
+      <div class="video-card">
+        <div>
+          <h3>Getting started with Glotaran</h3>
+          <p>
+            The screencast uses a sample dataset bundled with the application
+            and walks through the full analysis cycle — from data import and
+            SVD inspection through model building on the analysis canvas to
+            fitted spectra and residual review.
+          </p>
+        </div>
+        <a href="https://www.youtube.com/watch?v=ZeVuBustiYQ" class="link-btn primary" target="_blank" rel="noopener">Open on YouTube ↗</a>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3>Covered workflow</h3>
+          <ul>
+            <li>Starting the application and creating a project.</li>
+            <li>Importing a spectroscopy dataset and inspecting the raw data.</li>
+            <li>Applying preprocessing such as baseline correction and resampling.</li>
+            <li>Using singular value decomposition to estimate model complexity.</li>
+            <li>Building an analysis scheme on the drag-and-drop canvas.</li>
+            <li>Running the optimization and reviewing EAS/DAS/SAS spectra, traces, and residuals.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Why it still matters</h3>
+          <ul>
+            <li>It demonstrates the visual analysis canvas that made Glotaran a reference for scientific interface design.</li>
+            <li>It helps existing users reconnect terminology in the GUI with the published methodology.</li>
+            <li>It preserves practical know-how that was previously only available through the old site.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-copy">© Joris Snellenburg &amp; contributors · VU Amsterdam</div>
+    <a href={`${base}software/glotaran-legacy`} class="footer-back">← Back to Glotaran 1.x</a>
+  </footer>
+</Base>
+
+<style>
+  .spectrum-bar { height: 3px; background: linear-gradient(90deg, #9c27b0,#3f51b5,#03a9f4,#00bcd4,#4caf50,#cddc39,#ffc107,#ff5722,#f44336); }
+
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 2.5rem; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: rgba(12,14,18,0.92); backdrop-filter: blur(12px); z-index: 100; }
+  .nav-logo { display: flex; align-items: baseline; gap: 0.1em; text-decoration: none; }
+  .nav-logo-glo { font-family: var(--font-display); font-weight: 600; font-size: 1.4rem; color: var(--text); letter-spacing: -0.02em; }
+  .nav-logo-tar { font-family: var(--font-display); font-weight: 300; font-style: italic; font-size: 1.4rem; color: var(--text-muted); }
+  .nav-logo-an  { font-family: var(--font-display); font-weight: 600; font-size: 1.4rem; color: var(--text); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.875rem; transition: color 0.15s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta { background: transparent; border: 1px solid var(--border-hover); color: var(--text); padding: 0.45rem 1.1rem; border-radius: 6px; font-size: 0.875rem; text-decoration: none; }
+  .nav-cta:hover { background: rgba(255,255,255,0.05); }
+
+  main { max-width: 900px; margin: 0 auto; padding: 0 2.5rem 5rem; }
+
+  .hero { padding: 4rem 0 3rem; border-bottom: 1px solid var(--border); margin-bottom: 3rem; }
+  .hero-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  .eyebrow, .status { font-family: var(--font-mono); font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 4px; }
+  .eyebrow { background: rgba(248,152,32,0.12); color: var(--accent-java); }
+  .status { background: rgba(255,255,255,0.05); color: var(--text-dim); }
+  h1 { font-family: var(--font-display); font-weight: 300; font-size: clamp(2.2rem, 5vw, 3.5rem); line-height: 1.08; letter-spacing: -0.03em; max-width: 14ch; margin-bottom: 1rem; }
+  .hero-copy { color: var(--text-muted); max-width: 700px; font-size: 1.02rem; margin-bottom: 1.75rem; }
+  .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+  .section { padding: 0 0 3rem; }
+  .section-label { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.75rem; }
+  h2 { font-family: var(--font-display); font-size: 1.8rem; font-weight: 300; letter-spacing: -0.02em; margin-bottom: 0.9rem; }
+  h3 { font-family: var(--font-mono); font-size: 0.95rem; font-weight: 500; margin-bottom: 0.75rem; }
+  p { color: var(--text-muted); margin-bottom: 1rem; }
+  a { color: var(--accent-py); }
+
+  .link-btn { display: inline-flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); text-decoration: none; border: 1px solid var(--border); padding: 0.55rem 1rem; border-radius: 6px; transition: color 0.15s, border-color 0.15s; }
+  .link-btn:hover { color: var(--text); border-color: var(--border-hover); }
+  .link-btn.primary { background: var(--text); color: var(--bg); border-color: transparent; }
+  .link-btn.primary:hover { opacity: 0.85; }
+
+  .callout, .video-card, .card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; }
+  .callout { padding: 1.25rem 1.4rem; margin-top: 1.5rem; }
+  .video-card { display: flex; gap: 1rem; justify-content: space-between; align-items: center; padding: 1.4rem; margin: 1.5rem 0; }
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+  .card { padding: 1.25rem 1.4rem; }
+  ul { padding-left: 1.2rem; color: var(--text-muted); }
+  li { margin-bottom: 0.55rem; }
+
+  footer { max-width: 900px; margin: 0 auto; padding: 2rem 2.5rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+  .footer-copy { font-size: 0.78rem; color: var(--text-dim); }
+  .footer-back { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-dim); text-decoration: none; }
+  .footer-back:hover { color: var(--text-muted); }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { display: none; }
+    main { padding: 0 1.25rem 4rem; }
+    .grid { grid-template-columns: 1fr; }
+    .video-card { flex-direction: column; align-items: flex-start; }
+    footer { padding: 1.5rem 1.25rem; flex-direction: column; align-items: flex-start; }
+  }
+</style>

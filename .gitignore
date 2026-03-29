@@ -1,0 +1,27 @@
+# Astro build output
+dist/
+.astro/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Release archives
+*.tar.gz
+
+# Generated example downloads
+public/examples/my_project/
+public/examples/my_project.zip
+
+# Ignore the temp folders with reference material for the redesign (old site, etc)
+tmp.*/

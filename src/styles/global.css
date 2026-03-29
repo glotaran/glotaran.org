@@ -1,0 +1,37 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0c0e12;
+  --bg-surface: #141720;
+  --bg-card: #1a1e28;
+  --border: rgba(255,255,255,0.08);
+  --border-hover: rgba(255,255,255,0.15);
+  --text: #e8eaf0;
+  --text-muted: #8890a4;
+  --text-dim: #555d72;
+  --accent-py: #4ade80;
+  --accent-r: #75aadb;
+  --accent-java: #f89820;
+  --accent-gold: #ffd54f;
+  --font-body: 'DM Sans', sans-serif;
+  --font-display: 'Fraunces', serif;
+  --font-mono: 'DM Mono', monospace;
+}
+
+html { font-size: 16px; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Disable Fraunces "wonky" alternate glyphs (WONK=1 by default makes f etc. look unusual) */
+:root {
+  font-variation-settings: 'WONK' 0;
+}
+
+a { color: inherit; }
