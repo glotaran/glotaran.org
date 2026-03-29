@@ -2,7 +2,7 @@
 name: pyparamgui
 lang: python
 status: wip
-order: 5
+order: 6
 summary: An early proof-of-concept to re-create paramGUI-style teaching widgets on top of pyglotaran.
 github: https://github.com/glotaran/pyparamgui
 badges:
