@@ -30,7 +30,7 @@ const base = import.meta.env.BASE_URL;
 
     <div class="pkg-list">
       {packages.map((pkg) => (
-        <a href={`${base}software/${pkg.slug}`} class={`pkg-row ${pkg.data.lang} ${pkg.data.status === 'archived' ? 'archived' : ''} ${pkg.data.status === 'wip' ? 'wip' : ''}`}>
+        <a href={`${base}software/${pkg.id}`} class={`pkg-row ${pkg.data.lang} ${pkg.data.status === 'archived' ? 'archived' : ''} ${pkg.data.status === 'wip' ? 'wip' : ''}`}>
           <div class="pkg-row-left">
             <span class="pkg-row-name">{pkg.data.name}</span>
             <span class={`lang-badge ${pkg.data.lang}`}>{langLabel[pkg.data.lang]}</span>

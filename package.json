@@ -4,15 +4,17 @@
   "version": "0.0.1",
   "scripts": {
     "sync-examples": "node scripts/sync-example-files.mjs",
-    "predev": "npm run sync-examples",
+    "build-starter-kit": "python starter-kit/build_zip.py",
+    "prepare-assets": "npm run sync-examples && npm run build-starter-kit",
+    "predev": "npm run prepare-assets",
     "dev": "astro dev",
-    "prebuild": "npm run sync-examples",
+    "prebuild": "npm run prepare-assets",
     "build": "astro build",
     "prepreview": "npm run sync-examples",
     "preview": "astro preview"
   },
   "dependencies": {
-    "astro": "^5.5.0",
+    "astro": "^7.0.6",
     "jszip": "^3.10.1"
   }
 }

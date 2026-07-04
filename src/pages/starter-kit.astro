@@ -1,0 +1,150 @@
+---
+import Base from '../layouts/Base.astro';
+import SiteNav from '../components/SiteNav.astro';
+
+const base = import.meta.env.BASE_URL;
+const zipHref = `${base}downloads/pyglotaran-starter-kit.zip`;
+---
+
+<Base
+  title="pyglotaran starter kit — get started in one click"
+  description="A ready-to-run starter kit for global and target analysis with pyglotaran. No prior Python, notebook, or command-line experience required. Windows, macOS, and Linux."
+>
+  <div class="spectrum-bar"></div>
+  <SiteNav active="starter" />
+
+  <main class="starter">
+    <section class="hero">
+      <div class="eyebrow">Global &amp; Target Analysis · for absolute beginners</div>
+      <h1>Run your first analysis<br /><em>without installing anything</em></h1>
+      <p class="sub">
+        A ready-to-run kit for global and target analysis with pyglotaran. No
+        prior experience with Python, notebooks, or the command line required.
+        Works on Windows, macOS, and Linux.
+      </p>
+      <a class="btn-try" href={zipHref} download>⬇ Download the starter kit</a>
+      <div class="dl-meta">.zip · ~0.3 MB · one-time setup downloads ~500 MB</div>
+    </section>
+
+    <h2>Three steps to your first result</h2>
+    <ol class="steps">
+      <li><b>Download and unzip</b> the file above — you get a folder called{' '}
+        <span class="file">pyglotaran-starter-kit</span>.</li>
+      <li><b>Double-click the START_HERE file</b> for your operating system. The
+        first run installs everything automatically.</li>
+      <li><b>Follow the notebooks</b> that open in your browser. Everything is
+        explained as you go.</li>
+    </ol>
+
+    <div class="os-grid">
+      <div class="card"><h3>🪟 Windows</h3><p>Double-click{' '}
+        <span class="file">START_HERE_Windows.bat</span>. If a blue warning
+        appears, click <em>More info → Run anyway</em>.</p></div>
+      <div class="card"><h3>🍎 macOS</h3><p>Right-click{' '}
+        <span class="file">START_HERE_Mac.command</span> and choose{' '}
+        <em>Open</em>.</p></div>
+      <div class="card"><h3>🐧 Linux</h3><p>Run{' '}
+        <code>bash START_HERE_Linux.sh</code> in a terminal.</p></div>
+    </div>
+
+    <div class="callout">
+      <strong>Nothing is installed permanently on your system.</strong> The kit
+      sets up a self-contained environment inside its own folder. The first
+      launch needs internet; after that it works offline.
+    </div>
+
+    <h2>What's inside</h2>
+    <div class="nb-list">
+      <div class="nb"><span class="n">01</span><span class="d">
+        <b>Welcome</b> — learn how a notebook works and check the install.</span></div>
+      <div class="nb"><span class="n">02</span><span class="d">
+        <b>Your first analysis</b> — a full fit on a two-component dataset from a CSV file.</span></div>
+      <div class="nb"><span class="n">03</span><span class="d">
+        <b>Going deeper</b> — the same workflow on a richer three-component dataset.</span></div>
+      <div class="nb"><span class="n">04</span><span class="d">
+        <b>A real case study</b> — time-resolved fluorescence from a real measurement.</span></div>
+      <div class="nb"><span class="n">05</span><span class="d">
+        <b>Going further</b> — target analysis, multi-dataset fits, and published case studies.</span></div>
+    </div>
+
+    <p class="more">
+      Ready for more? Continue with the{' '}
+      <a href="https://pyglotaran.readthedocs.io">documentation</a>, the{' '}
+      <a href="https://github.com/glotaran/pyglotaran-examples">examples gallery</a>,{' '}
+      and the <a href={`${base}software/pyglotaran`}>pyglotaran package page</a>.
+    </p>
+  </main>
+</Base>
+
+<style>
+  .spectrum-bar {
+    height: 3px;
+    background: linear-gradient(90deg,
+      #9c27b0 0%, #3f51b5 14%, #03a9f4 28%, #00bcd4 38%,
+      #4caf50 52%, #cddc39 65%, #ffc107 78%, #ff5722 90%, #f44336 100%
+    );
+  }
+
+  .starter { max-width: 820px; margin: 0 auto; padding: 0 1.5rem 5rem; }
+  .hero { text-align: center; padding: 4rem 0 2rem; }
+  .eyebrow {
+    display: inline-block; font-family: var(--font-mono); font-size: 0.72rem;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim);
+    margin-bottom: 1.25rem; padding: 0.35rem 0.9rem;
+    border: 1px solid var(--border); border-radius: 100px;
+  }
+  h1 {
+    font-family: var(--font-display); font-weight: 300;
+    font-size: clamp(2.2rem, 5vw, 3.4rem); letter-spacing: -0.03em;
+    line-height: 1.1; color: var(--text); margin: 0 0 1.25rem;
+  }
+  h1 em { font-style: italic; font-weight: 300; color: var(--accent-py); }
+  .sub { color: var(--text-muted); font-size: 1.1rem; max-width: 620px; margin: 0 auto 2.25rem; font-weight: 300; }
+
+  .btn-try {
+    display: inline-flex; align-items: center; gap: 0.55rem;
+    background: rgba(74,222,128,0.12); color: var(--accent-py); text-decoration: none;
+    border: 1px solid rgba(74,222,128,0.35);
+    font-weight: 500; font-size: 1.02rem; padding: 0.85rem 1.7rem;
+    border-radius: 8px; transition: background 0.15s, border-color 0.15s;
+  }
+  .btn-try:hover { background: rgba(74,222,128,0.2); border-color: rgba(74,222,128,0.6); }
+  .dl-meta { color: var(--text-dim); font-size: 0.8rem; margin-top: 0.8rem; font-family: var(--font-mono); }
+
+  h2 { font-family: var(--font-display); font-weight: 400; font-size: 1.55rem; margin: 3rem 0 1rem; letter-spacing: -0.01em; color: var(--text); }
+
+  .steps { counter-reset: s; list-style: none; padding: 0; margin: 0; }
+  .steps li { counter-increment: s; position: relative; padding: 0.5rem 0 0.5rem 2.6rem; color: var(--text-muted); }
+  .steps li::before {
+    content: counter(s); position: absolute; left: 0; top: 0.45rem;
+    width: 1.7rem; height: 1.7rem; border-radius: 50%;
+    border: 1px solid var(--border-hover); color: var(--accent-py);
+    font-family: var(--font-mono); font-size: 0.85rem; display: grid; place-items: center;
+  }
+  .steps b { color: var(--text); font-weight: 500; }
+
+  .os-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.4rem; }
+  .card h3 { margin: 0 0 0.6rem; font-family: var(--font-body); font-weight: 500; font-size: 1.05rem; color: var(--text); }
+  .card p { margin: 0; color: var(--text-muted); font-size: 0.92rem; }
+
+  code { font-family: var(--font-mono); background: var(--bg-surface); color: var(--accent-gold); padding: 0.12em 0.45em; border-radius: 5px; font-size: 0.85em; }
+  .file { color: var(--accent-py); font-family: var(--font-mono); font-size: 0.9em; }
+
+  .callout {
+    background: var(--bg-surface); border: 1px solid var(--border);
+    border-left: 3px solid var(--accent-gold); border-radius: 8px;
+    padding: 1rem 1.3rem; margin: 1.5rem 0; color: var(--text-muted);
+  }
+  .callout strong { color: var(--text); }
+
+  .nb-list { display: grid; gap: 0.6rem; margin: 1rem 0; }
+  .nb { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 0.9rem 1.2rem; display: flex; gap: 0.9rem; align-items: baseline; }
+  .nb .n { font-family: var(--font-mono); color: var(--accent-py); font-size: 0.9rem; }
+  .nb .d { color: var(--text-muted); font-size: 0.92rem; }
+  .nb b { color: var(--text); font-weight: 500; }
+
+  .more { color: var(--text-muted); margin-top: 2rem; font-size: 0.95rem; }
+  .more a { color: var(--accent-py); text-decoration: none; }
+  .more a:hover { text-decoration: underline; }
+</style>

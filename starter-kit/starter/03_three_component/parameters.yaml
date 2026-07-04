@@ -1,0 +1,15 @@
+# Starting guesses for the three-state analysis.
+#
+# input: the sample starts fully in state s1 (fixed, not fitted).
+# kinetic: three decay rates (1 / lifetime) to refine.
+# irf: position and width of the instrument response.
+
+input:
+  - ["1", 1, { "vary": False }]
+  - ["0", 0, { "vary": False }]
+
+kinetic: [0.4, 0.08, 0.02]
+
+irf:
+  - ["center", 0.0]
+  - ["width", 0.8]

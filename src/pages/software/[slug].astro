@@ -6,7 +6,7 @@ import SiteNav from '../../components/SiteNav.astro';
 export async function getStaticPaths() {
   const packages = await getCollection('software');
   return packages.map((pkg) => ({
-    params: { slug: pkg.slug },
+    params: { slug: pkg.id },
     props: { pkg },
   }));
 }
@@ -27,11 +27,11 @@ const statusLabel: Record<string, string> = {
   wip: 'Work in Progress',
 };
 
-const activeNav = pkg.slug === 'glotaran-legacy'
+const activeNav = pkg.id === 'glotaran-legacy'
   ? 'legacy'
-  : pkg.slug === 'pyglotaran'
+  : pkg.id === 'pyglotaran'
     ? 'pyglotaran'
-    : pkg.slug === 'timp'
+    : pkg.id === 'timp'
       ? 'timp'
       : undefined;
 ---

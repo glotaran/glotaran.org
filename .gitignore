@@ -22,6 +22,10 @@ Thumbs.db
 # Generated example downloads
 public/examples/my_project/
 public/examples/my_project.zip
+public/downloads/pyglotaran-starter-kit.zip
 
 # Ignore the temp folders with reference material for the redesign (old site, etc)
 tmp.*/
+tmp/
+
+external/pyglotaran*

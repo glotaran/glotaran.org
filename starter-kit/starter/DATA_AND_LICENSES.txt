@@ -1,0 +1,46 @@
+pyglotaran starter kit — data provenance and licenses
+=====================================================
+
+Software
+--------
+This kit installs and uses:
+  - pyglotaran 0.7.4          (MIT License)  https://github.com/glotaran/pyglotaran
+  - pyglotaran-extras 0.7.4   (MIT License)  https://github.com/glotaran/pyglotaran-extras
+  - JupyterLab                (BSD License)  https://jupyter.org
+Setup is handled by 'uv' (Astral, MIT/Apache-2.0) https://github.com/astral-sh/uv
+
+The starter notebooks and launcher scripts in this kit are released under the
+MIT License, consistent with the pyglotaran project.
+
+
+Data used in the notebooks
+--------------------------
+02_two_component.ipynb
+  File: 02_two_component/data.csv
+  Simulated data, generated with pyglotaran's own simulator and saved as a
+  plain CSV file so it resembles a real instrument export. It models a
+  two-state sequential decay (s1 -> s2) with a Gaussian instrument response.
+  No measured data is involved; it exists to teach the workflow.
+
+03_three_component.ipynb
+  File: 03_three_component/data.csv
+  Simulated data, same origin as notebook 02, modelling a three-state
+  sequential decay (s1 -> s2 -> s3).
+
+04_fluorescence.ipynb
+  File: 04_fluorescence/data.ascii
+  Real time-resolved fluorescence measurement of Photosystem I, distributed
+  with the pyglotaran-examples project (study_fluorescence). It is included
+  here for teaching purposes. If you use this data in a publication, please
+  refer to the pyglotaran-examples repository for the appropriate citation:
+  https://github.com/glotaran/pyglotaran-examples
+
+The CSV loader (csv_tools.py) shipped in this kit is released under the MIT
+License, like the rest of the kit.
+
+
+Citing pyglotaran
+-----------------
+If pyglotaran is useful for your research, please cite the project. See the
+"How to cite" section at https://github.com/glotaran/pyglotaran and the
+pyglotaran documentation for the current reference.

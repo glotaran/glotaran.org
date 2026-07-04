@@ -1,0 +1,9 @@
+# Keep launcher line endings correct regardless of the checkout platform or
+# the user's core.autocrlf setting. build_zip.py also normalizes at build time,
+# but this keeps the source tree itself usable directly.
+*.sh        text eol=lf
+*.command   text eol=lf
+*.bat       text eol=crlf
+
+# Leave data verbatim.
+*.ascii     -text

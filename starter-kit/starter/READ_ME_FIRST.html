@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>pyglotaran starter kit — Read me first</title>
+<style>
+  :root {
+    --bg: #f7f8fa; --card: #ffffff; --ink: #1f2733; --muted: #5b6672;
+    --accent: #2a6f97; --accent-soft: #e5f0f6; --border: #e2e6ea;
+    --warn-bg: #fff8e6; --warn-border: #f0d488; --code-bg: #f2f4f7;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 2rem 1rem 4rem; background: var(--bg); color: var(--ink);
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; }
+  h1 { font-size: 2rem; margin: 0 0 .25rem; }
+  h2 { font-size: 1.3rem; margin: 2.2rem 0 .6rem; padding-top: .4rem; border-top: 1px solid var(--border); }
+  h2:first-of-type { border-top: none; }
+  .lead { color: var(--muted); font-size: 1.1rem; margin: 0 0 1.5rem; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+          padding: 1.25rem 1.4rem; margin: 1rem 0; }
+  code, kbd { background: var(--code-bg); border-radius: 5px; padding: .1em .4em;
+              font-family: "SF Mono", Menlo, Consolas, monospace; font-size: .9em; }
+  kbd { border: 1px solid var(--border); box-shadow: 0 1px 0 var(--border); }
+  .file { color: var(--accent); font-weight: 600; }
+  ol.big { counter-reset: step; list-style: none; padding: 0; margin: 0; }
+  ol.big > li { counter-increment: step; position: relative; padding: .6rem 0 .6rem 3rem; }
+  ol.big > li::before {
+    content: counter(step); position: absolute; left: 0; top: .55rem;
+    width: 2rem; height: 2rem; border-radius: 50%; background: var(--accent);
+    color: #fff; font-weight: 700; display: grid; place-items: center;
+  }
+  .tabs { display: flex; gap: .5rem; margin: 1rem 0 0; flex-wrap: wrap; }
+  .tab { border: 1px solid var(--border); background: var(--card); color: var(--ink);
+         padding: .5rem 1rem; border-radius: 8px 8px 0 0; cursor: pointer; font: inherit; font-weight: 600; }
+  .tab[aria-selected="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .panel { display: none; border: 1px solid var(--border); border-radius: 0 12px 12px 12px;
+           background: var(--card); padding: 1.25rem 1.4rem; }
+  .panel[data-active="true"] { display: block; }
+  .warn { background: var(--warn-bg); border: 1px solid var(--warn-border); border-radius: 10px;
+          padding: .9rem 1.2rem; margin: 1rem 0; }
+  details { background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+            padding: .4rem 1.1rem; margin: .6rem 0; }
+  summary { cursor: pointer; font-weight: 600; padding: .5rem 0; }
+  details[open] summary { margin-bottom: .4rem; }
+  .muted { color: var(--muted); }
+  a { color: var(--accent); }
+  .pill { display: inline-block; background: var(--accent-soft); color: var(--accent);
+          border-radius: 999px; padding: .15rem .7rem; font-size: .8rem; font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <span class="pill">pyglotaran starter kit</span>
+  <h1>Read me first 👋</h1>
+  <p class="lead">A ready-to-run kit for doing global and target analysis with
+    pyglotaran — even if you have never used Python, a notebook, or a command
+    line before. Nothing is installed on your system permanently, and it works
+    on Windows, macOS, and Linux.</p>
+
+  <div class="card">
+    <strong>What you need before you start</strong>
+    <ul>
+      <li>An internet connection (for the one-time setup download, ~500 MB).</li>
+      <li>About 2 GB of free disk space.</li>
+      <li>10 minutes the first time. After that it starts in seconds.</li>
+    </ul>
+    <p class="muted" style="margin-bottom:0">You do <strong>not</strong> need to
+      install Python, git, or anything else yourself. The starter kit does it
+      for you.</p>
+  </div>
+
+  <h2>Start in one step</h2>
+  <p>Pick your operating system:</p>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="true" data-tab="win">🪟 Windows</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="mac">🍎 macOS</button>
+    <button class="tab" role="tab" aria-selected="false" data-tab="linux">🐧 Linux</button>
+  </div>
+
+  <div class="panel" data-active="true" data-panel="win">
+    <ol class="big">
+      <li>Open the starter kit folder in File Explorer.</li>
+      <li>Double-click <span class="file">START_HERE_Windows.bat</span>.</li>
+      <li>If Windows shows a blue “Windows protected your PC” box, click
+        <strong>More info</strong> → <strong>Run anyway</strong>. (This appears
+        because the file was downloaded; it is safe.)</li>
+      <li>A black window opens and sets things up. <strong>Leave it open.</strong></li>
+      <li>After a few minutes your web browser opens with the analysis
+        environment. Go to the <strong>“Now do this”</strong> section below.</li>
+    </ol>
+  </div>
+
+  <div class="panel" data-panel="mac">
+    <ol class="big">
+      <li>Open the starter kit folder in Finder.</li>
+      <li><strong>Right-click</strong> (or Ctrl-click) <span class="file">START_HERE_Mac.command</span>
+        and choose <strong>Open</strong>.</li>
+      <li>macOS will warn that it is from an unidentified developer. Click
+        <strong>Open</strong> to confirm. (You only need the right-click the
+        first time; after that a normal double-click works.)</li>
+      <li>A Terminal window opens and sets things up. <strong>Leave it open.</strong></li>
+      <li>After a few minutes your web browser opens with the analysis
+        environment. Go to the <strong>“Now do this”</strong> section below.</li>
+    </ol>
+  </div>
+
+  <div class="panel" data-panel="linux">
+    <ol class="big">
+      <li>Open a terminal in the starter kit folder.</li>
+      <li>Run: <code>bash START_HERE_Linux.sh</code></li>
+      <li>It installs a Python manager, sets things up, and opens the analysis
+        environment in your browser. <strong>Leave the terminal open.</strong></li>
+      <li>Go to the <strong>“Now do this”</strong> section below.</li>
+    </ol>
+    <p class="muted">Requires <code>curl</code> (pre-installed on most systems).</p>
+  </div>
+
+  <div class="warn">
+    <strong>Keep the black / terminal window open while you work.</strong>
+    It is running the analysis environment behind the scenes. When you are
+    finished, save your notebook, close the browser tab, then close that window.
+  </div>
+
+  <h2>Now do this</h2>
+  <p>When the analysis environment (called <strong>JupyterLab</strong>) opens in
+    your browser, you will see a file list on the left. Work through the five
+    notebooks in order — just open each one and follow the instructions inside:</p>
+  <ol class="big">
+    <li><span class="file">01_welcome.ipynb</span> — learn how a notebook works
+      (2 minutes) and confirm everything is installed.</li>
+    <li><span class="file">02_two_component.ipynb</span> — run a complete
+      analysis on a two-component dataset loaded from a CSV file.</li>
+    <li><span class="file">03_three_component.ipynb</span> — the same workflow
+      on a richer three-component dataset.</li>
+    <li><span class="file">04_fluorescence.ipynb</span> — the same workflow on a
+      real, published fluorescence measurement.</li>
+    <li><span class="file">05_going_further.ipynb</span> — where to go next:
+      target analysis, multi-dataset fits, and case studies.</li>
+  </ol>
+  <p>The single skill you need inside a notebook: click a code cell and press
+    <kbd>Shift</kbd> + <kbd>Enter</kbd> to run it. Everything is explained as you go.</p>
+
+  <h2>Starting again later</h2>
+  <p>Just double-click the same <span class="file">START_HERE</span> file for
+    your system. The second time it skips the download and opens in seconds —
+    and works offline.</p>
+
+  <h2>If something goes wrong</h2>
+
+  <details>
+    <summary>The setup window closed immediately / flashed and disappeared</summary>
+    <p>Something failed before it could show a message. Most often this is no
+      internet connection or a corporate firewall. Try again on a normal network.
+      On Windows, you can also open the folder, hold <kbd>Shift</kbd> and
+      right-click an empty area, choose “Open PowerShell/Terminal here”, and run
+      the batch file from there so the error stays visible.</p>
+  </details>
+
+  <details>
+    <summary>“uv is required” or the download fails</summary>
+    <p>The kit needs to download a small tool called <code>uv</code> and the
+      analysis packages. If you are behind a company proxy or firewall, this can
+      be blocked. Ask your IT department to allow access to
+      <code>astral.sh</code> and <code>pypi.org</code>, or run the kit from a
+      network without those restrictions.</p>
+  </details>
+
+  <details>
+    <summary>The browser did not open, but the window says it is running</summary>
+    <p>Look in the black/terminal window for a line containing
+      <code>http://localhost:8888/...</code>. Copy that whole address (including
+      the part after <code>?token=</code>) and paste it into your web browser.</p>
+  </details>
+
+  <details>
+    <summary>macOS says the file is “damaged” or won’t open</summary>
+    <p>Use <strong>right-click → Open</strong> rather than double-clicking, and
+      choose <strong>Open</strong> in the dialog. This tells macOS you trust the
+      file. You only need to do this once.</p>
+  </details>
+
+  <details>
+    <summary>A notebook cell shows a red error</summary>
+    <p>The most reliable fix is to start the notebook fresh: in the JupyterLab
+      menu choose <strong>Kernel → Restart Kernel and Run All Cells</strong>, and
+      make sure you run cells from the top in order. If an error mentions a
+      missing file, check you did not rename the <code>models</code> or
+      <code>data</code> folders.</p>
+  </details>
+
+  <h2>Where to learn more</h2>
+  <ul>
+    <li>More worked examples:
+      <a href="https://github.com/glotaran/pyglotaran-examples">pyglotaran-examples</a></li>
+    <li>Documentation:
+      <a href="https://pyglotaran.readthedocs.io">pyglotaran.readthedocs.io</a></li>
+    <li>The GloTarAn ecosystem and user manual:
+      <a href="https://glotaran.org">glotaran.org</a></li>
+  </ul>
+
+  <p class="muted" style="margin-top:2rem">Built on pyglotaran 0.7.4 and
+    pyglotaran-extras 0.7.4. See <span class="file">DATA_AND_LICENSES.txt</span>
+    for data provenance and licensing.</p>
+
+</div>
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('.panel');
+  tabs.forEach(tab => tab.addEventListener('click', () => {
+    tabs.forEach(t => t.setAttribute('aria-selected', String(t === tab)));
+    panels.forEach(p => p.setAttribute('data-active',
+      String(p.dataset.panel === tab.dataset.tab)));
+  }));
+</script>
+</body>
+</html>
