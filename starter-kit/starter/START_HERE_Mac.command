@@ -36,7 +36,7 @@ export PATH="$HOME/.local/bin:$PATH"
 if ! command -v uv >/dev/null 2>&1; then
     echo "  Step 1/3: Installing the 'uv' Python manager ..."
     echo
-    curl -LsSf https://astral.sh/uv/install.sh | sh \
+    sh ./install_uv.sh \
         || fail "Could not install 'uv'. Are you connected to the internet?"
     export PATH="$HOME/.local/bin:$PATH"
 else

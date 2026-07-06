@@ -13,7 +13,7 @@
     "dev": "astro dev",
     "prebuild": "npm run prepare-assets",
     "build": "astro build",
-    "prepreview": "npm run sync-examples",
+    "prepreview": "npm run prepare-assets",
     "preview": "astro preview"
   },
   "dependencies": {

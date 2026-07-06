@@ -26,7 +26,8 @@ if %errorlevel% equ 0 goto uv_present
 
 echo  Step 1/3: Installing the 'uv' Python manager ...
 echo.
-powershell -NoProfile -ExecutionPolicy ByPass -Command "irm https://astral.sh/uv/install.ps1 | iex"
+powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0install_uv.ps1"
+if errorlevel 1 goto no_uv
 set "PATH=%USERPROFILE%\.local\bin;%PATH%"
 goto uv_check
 

@@ -6,5 +6,5 @@ starter/.venv/
 .DS_Store
 Thumbs.db
 
-# The built .zip lives in ../public/downloads/ (tracked there), not here
+# The generated .zip lives in ../public/downloads/ and is ignored there
 *.zip
