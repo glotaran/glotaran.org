@@ -1,7 +1,8 @@
 import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 const software = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/software' }),
   schema: z.object({
     name: z.string(),
     lang: z.enum(['python', 'r', 'java']),
@@ -19,7 +20,7 @@ const software = defineCollection({
 });
 
 const publications = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/publications' }),
   schema: z.object({
     title: z.string(),
     authors: z.string(),

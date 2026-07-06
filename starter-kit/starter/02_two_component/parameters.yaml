@@ -1,0 +1,16 @@
+# Starting guesses. The optimizer refines the ones that are allowed to vary.
+#
+# input: the sample starts fully in state s1 (fixed, not fitted).
+# kinetic: the two decay rates (1 / lifetime). These are our guesses;
+#          the true values are what the analysis will find.
+# irf: position and width of the instrument response.
+
+input:
+  - ["1", 1, { "vary": False }]
+  - ["0", 0, { "vary": False }]
+
+kinetic: [0.4, 0.06]
+
+irf:
+  - ["center", 0.0]
+  - ["width", 0.8]

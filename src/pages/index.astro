@@ -12,8 +12,8 @@ const publications = (await getCollection('publications'))
   .sort((a, b) => b.data.year - a.data.year);
 
 const langLabel: Record<string, string> = { python: 'Python', r: 'R', java: 'Java' };
-const flagship = packages.find((p) => p.slug === 'pyglotaran')!;
-const rest = packages.filter((p) => p.slug !== 'pyglotaran');
+const flagship = packages.find((p) => p.id === 'pyglotaran')!;
+const rest = packages.filter((p) => p.id !== 'pyglotaran');
 const base = import.meta.env.BASE_URL;
 ---
 
@@ -34,9 +34,14 @@ const base = import.meta.env.BASE_URL;
       photovoltaics to photochemistry and beyond.
     </p>
     <div class="hero-actions">
-      <a href={`${base}software/pyglotaran`} class="btn-primary">Get started with pyglotaran</a>
-      <a href={`${base}ecosystem`} class="btn-ghost">Explore the ecosystem</a>
+      <a href={`${base}starter-kit`} class="btn-try">Get the starter kit</a>
+      <a href={`${base}software/pyglotaran`} class="btn-ghost">Explore pyglotaran →</a>
     </div>
+    <p class="hero-note">
+      New here? The starter kit is a ready-to-run bundle of notebooks and example
+      data for your first analysis with pyglotaran.
+    </p>
+    <div class="install-lead">or install into an existing Python environment:</div>
     <div class="install-block">
       <span class="prefix">$</span>
       <span class="cmd">pip install pyglotaran pyglotaran-extras</span>
@@ -74,7 +79,7 @@ const base = import.meta.env.BASE_URL;
       <div class="timeline-stop">
         <span class="timeline-year">2012</span>
         <span class="timeline-name">Glotaran</span>
-        <span class="timeline-note">Java desktop interface for TIMP</span>
+        <span class="timeline-note">Java based GUI for TIMP</span>
       </div>
       <div class="timeline-line"></div>
       <div class="timeline-stop">
@@ -96,7 +101,7 @@ const base = import.meta.env.BASE_URL;
     <!-- Featured: pyglotaran -->
     <div
       class="featured-card"
-      data-card-link={`${base}software/${flagship.slug}`}
+      data-card-link={`${base}software/${flagship.id}`}
       role="link"
       tabindex="0"
       aria-label="Open pyglotaran"
@@ -119,7 +124,7 @@ const base = import.meta.env.BASE_URL;
           <li>Jupyter-native, built on NumPy and xarray</li>
           <li>Cross-validated against two decades of TIMP results</li>
         </ul>
-        <a href={`${base}software/${flagship.slug}`} class="featured-link">Open pyglotaran ↗</a>
+        <a href={`${base}software/${flagship.id}`} class="featured-link">Open pyglotaran ↗</a>
       </div>
       <div class="featured-panel featured-example">
         <CodeExampleTabs
@@ -134,7 +139,7 @@ const base = import.meta.env.BASE_URL;
     <!-- Package grid — driven by src/content/packages/ -->
     <div class="ecosystem-grid">
       {rest.map((pkg) => (
-        <a href={`${base}software/${pkg.slug}`} class={`pkg-card ${pkg.data.lang}`}>
+        <a href={`${base}software/${pkg.id}`} class={`pkg-card ${pkg.data.lang}`}>
           <div class="pkg-header">
             <span class="pkg-name">{pkg.data.name}</span>
             <span class="pkg-arrow">↗</span>
@@ -292,13 +297,15 @@ const base = import.meta.env.BASE_URL;
   }
   .hero h1 em { font-style: italic; font-weight: 300; color: var(--text-muted); }
   .hero-sub { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 3rem; font-weight: 300; }
-  .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 4rem; }
-  .btn-primary { background: var(--text); color: var(--bg); padding: 0.7rem 1.8rem; border-radius: 6px; text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: opacity 0.15s; }
-  .btn-primary:hover { opacity: 0.85; }
+  .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .hero-note { font-size: 0.85rem; color: var(--text-dim); max-width: 460px; margin: 0 auto 2.75rem; line-height: 1.5; }
   .btn-ghost { background: transparent; color: var(--text-muted); padding: 0.7rem 1.8rem; border-radius: 6px; border: 1px solid var(--border); text-decoration: none; font-size: 0.9rem; font-weight: 400; transition: color 0.15s, border-color 0.15s; }
   .btn-ghost:hover { color: var(--text); border-color: var(--border-hover); }
+  .btn-try { background: rgba(74,222,128,0.12); color: var(--accent-py); padding: 0.7rem 1.8rem; border-radius: 6px; border: 1px solid rgba(74,222,128,0.35); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: background 0.15s, border-color 0.15s; }
+  .btn-try:hover { background: rgba(74,222,128,0.2); border-color: rgba(74,222,128,0.6); }
 
   /* ─── INSTALL ─── */
+  .install-lead { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.04em; margin-bottom: 0.75rem; }
   .install-block { display: inline-flex; align-items: center; gap: 1rem; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 1.25rem; font-family: var(--font-mono); font-size: 0.82rem; }
   .install-block .prefix { color: var(--text-dim); }
   .install-block .cmd { color: var(--accent-py); }

@@ -1,0 +1,10 @@
+# Environments / caches created by running or testing the kit
+starter/.venv/
+**/__pycache__/
+**/.ipynb_checkpoints/
+**/results/
+.DS_Store
+Thumbs.db
+
+# The generated .zip lives in ../public/downloads/ and is ignored there
+*.zip

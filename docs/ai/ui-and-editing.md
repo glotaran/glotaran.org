@@ -44,6 +44,7 @@ Rules:
 - The spectrum gradient bar is currently repeated in page files. Reuse the existing pattern unless the task specifically justifies extracting it.
 - Software pages are driven by [src/pages/software/[slug].astro](../../src/pages/software/%5Bslug%5D.astro).
 - Markdown prose on software pages relies on the shared `.prose` styles in that template.
+- In `.astro` prose, use an explicit `{' '}` when a line break separates text from an inline element. Do not rely on trailing spaces at line ends; formatters and Astro compilation can remove them and join the rendered words.
 
 ## Validation Checklist
 
