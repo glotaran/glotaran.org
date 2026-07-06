@@ -2,6 +2,9 @@
   "name": "glotaran-org",
   "type": "module",
   "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
     "sync-examples": "node scripts/sync-example-files.mjs",
     "build-starter-kit": "python starter-kit/build_zip.py",

@@ -7,7 +7,7 @@ Built with [Astro](https://astro.build) and deployed as a static site.
 
 ## Development
 
-Requires Node 18+.
+Requires Node 22.12+.
 
 ```sh
 npm install
