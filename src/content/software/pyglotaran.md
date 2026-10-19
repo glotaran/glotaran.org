@@ -1,7 +1,7 @@
 ---
 name: pyglotaran
 lang: python
-status: active
+status: recommended
 order: 1
 summary: A Python framework for global and target analysis of time-resolved spectroscopy, microscopy and other multi-way data using composable text-based model definitions.
 version: "0.7.4"

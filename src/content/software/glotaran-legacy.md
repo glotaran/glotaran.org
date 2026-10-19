@@ -1,16 +1,16 @@
 ---
 name: Glotaran 1.x
 lang: java
-status: archived
+status: maintained
 order: 5
 summary: The original — and still the most-cited — graphical tool for global and target analysis, with over 1,500 citations since 2012.
-version: "1.5.1"
+version: "1.7.0"
 github: https://github.com/glotaran/glotaran-legacy
 docs: https://glotaran.github.io/legacy/
 badges:
-  - Java 8
-  - NetBeans
-  - v1.5.1
+  - Java 25
+  - NetBeans 31
+  - v1.7.0
 ---
 
 # About glotaran-legacy
@@ -28,10 +28,7 @@ building kinetic models, running fits, and inspecting results — all
 without writing a single line of code. It became the standard tool in
 ultrafast spectroscopy and photosynthesis labs worldwide.
 
-The 1.5.1 release remains fully functional on any operating system with
-Java 8. For Python-based workflows, see also
-[pyglotaran](/software/pyglotaran), which reimagines these capabilities
-with a modern scripting interface.
+Glotaran 1.x is still maintained and runs on current Windows, macOS and Linux computers. For new work and Python-based workflows, see [pyglotaran](/software/pyglotaran), which reimagines these capabilities with a modern scripting interface.
 
 ## What set the standard
 
@@ -77,10 +74,12 @@ no scripting: connect the nodes, configure the model, and run.
 
 ## Download
 
-Version 1.5.1 is available from the
-[GitHub releases page](https://github.com/glotaran/glotaran-legacy/releases).
+Download Glotaran from the [GitHub releases page](https://github.com/glotaran/glotaran-legacy/releases). The installers for Windows, macOS and Linux include Java.
 
-Requires Java 8 or later. Windows and macOS installers are included alongside the cross-platform `.jar`.
+- **[Glotaran 1.7.0](https://github.com/glotaran/glotaran-legacy/releases/tag/v1.7.0)** is recommended for new users and receives new features. On the first analysis it downloads and starts R with TIMP and Rserve for you (a few hundred MB).
+- **[Glotaran 1.6.1](https://github.com/glotaran/glotaran-legacy/releases/tag/v1.6.1)** is for computers without internet access, or where a proxy or IT policy blocks that download. You install R, TIMP and Rserve yourself, as in Glotaran 1.5.
+
+Glotaran 1.6 and 1.7 can be installed next to each other.
 
 ## A masterclass in scientific interface design
 

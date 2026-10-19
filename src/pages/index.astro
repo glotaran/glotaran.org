@@ -108,7 +108,7 @@ const base = import.meta.env.BASE_URL;
     >
       <div class="featured-panel" data-card-nav-surface>
         <div class="featured-overline">
-          <span class="featured-tag flagship">Flagship</span>
+          {flagship.data.status === 'recommended' && <span class="featured-tag recommended">Recommended</span>}
           <span class="featured-tag">Python</span>
         </div>
         <h2>pyglotaran</h2>
@@ -146,6 +146,7 @@ const base = import.meta.env.BASE_URL;
           </div>
           <div class="pkg-badges">
             <span class={`pkg-lang ${pkg.data.lang}`}>{langLabel[pkg.data.lang]}</span>
+            {pkg.data.status === 'maintained' && <span class="pkg-status maintained">Maintained</span>}
             {pkg.data.status === 'archived' && <span class="pkg-status archived">Archived</span>}
           </div>
           <p class="pkg-desc">{pkg.data.summary}</p>
@@ -360,7 +361,7 @@ const base = import.meta.env.BASE_URL;
   .featured-panel { min-width: 0; }
   .featured-overline { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; }
   .featured-tag { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500; padding: 0.2rem 0.6rem; border-radius: 4px; background: rgba(74,222,128,0.12); color: var(--accent-py); }
-  .featured-tag.flagship { background: rgba(255,213,79,0.1); color: var(--accent-gold); }
+  .featured-tag.recommended { background: rgba(255,213,79,0.1); color: var(--accent-gold); }
   .featured-card h2 { font-family: var(--font-mono); font-size: 1.4rem; font-weight: 500; color: var(--text); margin-bottom: 0.75rem; }
   .featured-card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.25rem; line-height: 1.6; }
   .feature-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
@@ -401,6 +402,7 @@ const base = import.meta.env.BASE_URL;
   .pkg-lang.r      { background: rgba(79,195,247,0.15); color: #4fc3f7; font-weight: 600; }
   .pkg-lang.java   { background: rgba(248,152,32,0.12); color: var(--accent-java); }
   .pkg-status { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500; padding: 0.2rem 0.55rem; border-radius: 4px; }
+  .pkg-status.maintained { background: rgba(255,255,255,0.05); color: var(--text-muted); }
   .pkg-status.archived { background: rgba(255,255,255,0.05); color: var(--text-dim); }
   .pkg-name { font-family: var(--font-mono); font-size: 0.95rem; font-weight: 500; color: var(--text); }
   .pkg-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; flex: 1; }
