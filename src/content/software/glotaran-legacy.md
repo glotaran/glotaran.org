@@ -3,7 +3,7 @@ name: Glotaran 1.x
 lang: java
 status: maintained
 order: 5
-summary: The original — and still the most-cited — graphical tool for global and target analysis, with over 1,500 citations since 2012.
+summary: Graphical tool for global and target analysis, cited over 1,500 times since 2012.
 version: "1.7.0"
 github: https://github.com/glotaran/glotaran-legacy
 docs: https://glotaran.github.io/legacy/
@@ -15,39 +15,27 @@ badges:
 
 # About glotaran-legacy
 
-The original — and still the most-cited — tool for global and target
-analysis of time-resolved spectroscopy data. With over 1,500 citations
-since its [2012 JSS publication](/publications), Glotaran brought rigorous
-compartmental modeling to an entire generation of experimentalists who
-work visually rather than in code.
+Glotaran is a graphical tool for global and target analysis of time-resolved spectroscopy data. It is the original tool in the GloTarAn ecosystem and still the most cited, with over 1,500 citations since the [2012 JSS publication](/publications). It lets experimentalists do compartmental modeling without writing code.
 
-Built on the NetBeans Platform and backed by TIMP's partitioned variable
-projection engine via Rserve, Glotaran gave researchers a complete
-desktop environment for importing data, exploring it interactively,
-building kinetic models, running fits, and inspecting results — all
-without writing a single line of code. It became the standard tool in
-ultrafast spectroscopy and photosynthesis labs worldwide.
+Glotaran is built on the NetBeans Platform and uses TIMP's partitioned variable projection engine through Rserve. In one desktop application you import data, explore it interactively, build kinetic models, run fits and inspect the results. It is widely used in ultrafast spectroscopy and photosynthesis research.
 
-Glotaran 1.x is still maintained and runs on current Windows, macOS and Linux computers. For new work and Python-based workflows, see [pyglotaran](/software/pyglotaran), which reimagines these capabilities with a modern scripting interface.
+Glotaran 1.x is still maintained and runs on current Windows, macOS and Linux computers. For new work and Python-based workflows, see [pyglotaran](/software/pyglotaran), which provides the same analysis capabilities through a Python scripting interface.
 
-## What set the standard
+## Features
 
-At Glotaran's heart is the **drag-and-drop analysis canvas** — a visual
-workspace where users construct an analysis scheme by linking Dataset,
-Model, and Output containers with directional arrows. No command line,
-no scripting: connect the nodes, configure the model, and run.
+The main workspace is the **drag-and-drop analysis canvas**. You set up an analysis by linking Dataset, Model and Output containers with arrows, configure the model, and run the fit.
 
 ### Data exploration
 
 - 2D intensity visualization (wavelength × time heatmap with color-mapped signal amplitude)
 - Interactive sliders to scan through individual time-traces and spectra
 - Data trimming via bounding boxes drawn directly on the visualizer
-- Real-time Singular Value Decomposition — instantly estimate the number of kinetic components before fitting
+- Singular Value Decomposition that updates as you explore, to estimate the number of kinetic components before fitting
 - Support for multiple vendor formats (Hamamatsu `.img`, Becker & Hickl `.sdt`, PicoQuant `.pt3`, and plain-text formats)
 
 ### Model building
 
-- Visual K-matrix editor for defining compartmental and kinetic schemes — abstracting the linear algebra into an intuitive grid
+- Visual K-matrix editor: define compartmental and kinetic schemes by filling in rate constants in a grid
 - Instrument response function modeling (Gaussian position and width)
 - Wavelength-dependent dispersion via polynomial models
 - Sequential, parallel, and full target models
@@ -55,7 +43,7 @@ no scripting: connect the nodes, configure the model, and run.
 
 ### Results and output
 
-- Linear-logarithmic time axis — ultrafast early-time dynamics and slow long-term decays on a single plot
+- Linear-logarithmic time axis, to show fast early-time dynamics and slow decays in one plot
 - Fitted traces overlaid on raw data
 - Evolution-Associated Spectra (EAS), Decay-Associated Spectra (DAS), and Species-Associated Spectra (SAS)
 - Concentration profile plots
@@ -79,20 +67,11 @@ Download Glotaran from the [GitHub releases page](https://github.com/glotaran/gl
 - **[Glotaran 1.7.0](https://github.com/glotaran/glotaran-legacy/releases/tag/v1.7.0)** is recommended for new users and receives new features. On the first analysis it downloads and starts R with TIMP and Rserve for you (a few hundred MB).
 - **[Glotaran 1.6.1](https://github.com/glotaran/glotaran-legacy/releases/tag/v1.6.1)** is for computers without internet access, or where a proxy or IT policy blocks that download. You install R, TIMP and Rserve yourself, as in Glotaran 1.5.
 
-Glotaran 1.6 and 1.7 can be installed next to each other.
+## The graphical interface
 
-## A masterclass in scientific interface design
+Glotaran runs global and target analysis from a graphical interface. You build models on a drag-and-drop canvas, inspect the data with an SVD that updates as you go, edit the K-matrix visually, and plot time on a linear-logarithmic axis. It has been used in more than 1,500 publications.
 
-Glotaran proved that rigorous global and target analysis could be made
-accessible through a visual interface without sacrificing analytical
-depth. Its drag-and-drop canvas, real-time SVD, visual K-matrix editor,
-and linear-logarithmic time axis defined what scientific fitting software
-could look and feel like — and 1,500+ publications later, that design
-still holds up.
-
-Researchers with established workflows around the desktop GUI can
-continue to use it with confidence. The documentation, the original
-screencast, and the full publication record are preserved for continuity.
+If your workflow is built around the desktop GUI, you can keep using it. The documentation, the original screencast and the publication list remain available.
 
 ## Citation
 
