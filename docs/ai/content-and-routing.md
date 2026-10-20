@@ -29,7 +29,7 @@ Required fields:
 
 Common optional fields:
 
-- `status`: `active`, `stable`, `archived`
+- `status`: `active`, `recommended`, `stable`, `maintained`, `archived`, `wip`
 - `version`
 - `docs`, `pypi`, `cran`, `zenodo`
 - `badges`
